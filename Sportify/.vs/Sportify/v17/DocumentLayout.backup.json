@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\models\\salon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\models\\salon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\controllers\\saloncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\controllers\\saloncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +34,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Salon.cshtml",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Models\\Salon.cshtml",
+              "RelativeDocumentMoniker": "Sportify\\Models\\Salon.cshtml",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Models\\Salon.cshtml",
+              "RelativeToolTip": "Sportify\\Models\\Salon.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T09:59:10.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "Sportify\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "Sportify\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T09:58:45.031Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
@@ -18,6 +69,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SalonController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\SalonController.cs",
+              "RelativeDocumentMoniker": "Sportify\\Controllers\\SalonController.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\SalonController.cs",
+              "RelativeToolTip": "Sportify\\Controllers\\SalonController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T09:58:03.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Sportify\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Sportify\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T09:14:54.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Program.cs",
+              "RelativeDocumentMoniker": "Sportify\\Program.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Program.cs",
+              "RelativeToolTip": "Sportify\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T08:59:10.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Sportify\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Sportify\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T08:55:52.711Z",
+              "EditorCaption": ""
             }
           ]
         }
