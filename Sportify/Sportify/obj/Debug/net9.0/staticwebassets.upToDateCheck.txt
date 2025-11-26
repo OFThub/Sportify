@@ -61,6 +61,7 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\css\account.css
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\wwwroot\css\site.css
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\wwwroot\favicon.ico
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\wwwroot\js\site.js
@@ -123,3 +124,4 @@ C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\wwwroot\lib\jquery
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\wwwroot\lib\jquery\LICENSE.txt
+C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\wwwroot\css\account.css
