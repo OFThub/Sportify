@@ -52,6 +52,39 @@ namespace Sportify.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Egitmenler",
+                columns: table => new
+                {
+                    TrainerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GymId = table.Column<int>(type: "int", nullable: false),
+                    TrainerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    WorkStartTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    WorkEndTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    ServiceName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    ServiceTime = table.Column<int>(type: "int", nullable: false),
+                    ServicePrice = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Egitmenler", x => x.TrainerId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Randevular",
+                columns: table => new
+                {
+                    AppointmentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TrainerId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Randevular", x => x.AppointmentId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Salonlar",
                 columns: table => new
                 {
@@ -172,54 +205,6 @@ namespace Sportify.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Trainer",
-                columns: table => new
-                {
-                    TrainerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TrainerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    WorkStartTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    WorkEndTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    GymId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trainer", x => x.TrainerId);
-                    table.ForeignKey(
-                        name: "FK_Trainer_Salonlar_GymId",
-                        column: x => x.GymId,
-                        principalTable: "Salonlar",
-                        principalColumn: "GymId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Servisler",
-                columns: table => new
-                {
-                    ServiceId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ServiceName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ServiceTime = table.Column<int>(type: "int", nullable: false),
-                    ServicePrice = table.Column<int>(type: "int", nullable: false),
-                    GymId = table.Column<int>(type: "int", nullable: true),
-                    TrainerId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Servisler", x => x.ServiceId);
-                    table.ForeignKey(
-                        name: "FK_Servisler_Salonlar_GymId",
-                        column: x => x.GymId,
-                        principalTable: "Salonlar",
-                        principalColumn: "GymId");
-                    table.ForeignKey(
-                        name: "FK_Servisler_Trainer_TrainerId",
-                        column: x => x.TrainerId,
-                        principalTable: "Trainer",
-                        principalColumn: "TrainerId");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -258,21 +243,6 @@ namespace Sportify.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Servisler_GymId",
-                table: "Servisler",
-                column: "GymId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Servisler_TrainerId",
-                table: "Servisler",
-                column: "TrainerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Trainer_GymId",
-                table: "Trainer",
-                column: "GymId");
         }
 
         /// <inheritdoc />
@@ -294,19 +264,19 @@ namespace Sportify.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Servisler");
+                name: "Egitmenler");
+
+            migrationBuilder.DropTable(
+                name: "Randevular");
+
+            migrationBuilder.DropTable(
+                name: "Salonlar");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Trainer");
-
-            migrationBuilder.DropTable(
-                name: "Salonlar");
         }
     }
 }

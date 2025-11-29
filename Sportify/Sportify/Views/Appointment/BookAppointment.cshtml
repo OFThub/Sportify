@@ -1,0 +1,23 @@
+﻿@model List<Sportify.Models.Trainer>
+
+<div class="trainer-list-container">
+    @foreach (var trainer in Model)
+    {
+        <div class="trainer-card">
+            <h2>@trainer.TrainerName</h2>
+            <p>@trainer.ServiceName</p>
+            <p>@trainer.ServicePrice</p>
+            <p>@trainer.ServiceTime dk</p>
+            <p>@trainer.WorkStartTime-@trainer.WorkEndTime</p>
+
+            <form asp-controller="Appointment" asp-action="CreateAppointment" method="post">
+
+                <input type="hidden" name="trainerId" value="@trainer.TrainerId" />
+
+                <button type="submit" class="select-button">
+                    Randevu Al
+                </button>
+            </form>
+        </div>
+    }
+</div>

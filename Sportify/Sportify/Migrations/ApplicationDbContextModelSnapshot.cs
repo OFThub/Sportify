@@ -224,6 +224,26 @@ namespace Sportify.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Sportify.Models.Appointment", b =>
+                {
+                    b.Property<int>("AppointmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
+
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AppointmentId");
+
+                    b.ToTable("Randevular");
+                });
+
             modelBuilder.Entity("Sportify.Models.Gym", b =>
                 {
                     b.Property<int>("GymId")
@@ -248,40 +268,6 @@ namespace Sportify.Migrations
                     b.ToTable("Salonlar");
                 });
 
-            modelBuilder.Entity("Sportify.Models.Service", b =>
-                {
-                    b.Property<int>("ServiceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"));
-
-                    b.Property<int?>("GymId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ServiceName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("ServicePrice")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceTime")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TrainerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ServiceId");
-
-                    b.HasIndex("GymId");
-
-                    b.HasIndex("TrainerId");
-
-                    b.ToTable("Servisler");
-                });
-
             modelBuilder.Entity("Sportify.Models.Trainer", b =>
                 {
                     b.Property<int>("TrainerId")
@@ -290,7 +276,18 @@ namespace Sportify.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrainerId"));
 
-                    b.Property<int?>("GymId")
+                    b.Property<int>("GymId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("ServicePrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceTime")
                         .HasColumnType("int");
 
                     b.Property<string>("TrainerName")
@@ -306,9 +303,7 @@ namespace Sportify.Migrations
 
                     b.HasKey("TrainerId");
 
-                    b.HasIndex("GymId");
-
-                    b.ToTable("Trainer");
+                    b.ToTable("Egitmenler");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -360,36 +355,6 @@ namespace Sportify.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Sportify.Models.Service", b =>
-                {
-                    b.HasOne("Sportify.Models.Gym", null)
-                        .WithMany("GymServices")
-                        .HasForeignKey("GymId");
-
-                    b.HasOne("Sportify.Models.Trainer", null)
-                        .WithMany("TrainerServices")
-                        .HasForeignKey("TrainerId");
-                });
-
-            modelBuilder.Entity("Sportify.Models.Trainer", b =>
-                {
-                    b.HasOne("Sportify.Models.Gym", null)
-                        .WithMany("GymTrainers")
-                        .HasForeignKey("GymId");
-                });
-
-            modelBuilder.Entity("Sportify.Models.Gym", b =>
-                {
-                    b.Navigation("GymServices");
-
-                    b.Navigation("GymTrainers");
-                });
-
-            modelBuilder.Entity("Sportify.Models.Trainer", b =>
-                {
-                    b.Navigation("TrainerServices");
                 });
 #pragma warning restore 612, 618
         }

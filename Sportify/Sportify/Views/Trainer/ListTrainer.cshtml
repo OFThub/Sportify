@@ -1,0 +1,35 @@
+﻿@model List<Sportify.Models.Trainer>
+
+<div class="trainer-list-container">
+    @foreach (var trainer in Model)
+    {
+        <div class="trainer-card">
+
+            <h2>@trainer.TrainerName</h2>
+            <p><strong>Hizmet:</strong> @trainer.ServiceName</p>
+            <p><strong>Fiyat:</strong> @trainer.ServicePrice TL</p>
+            <p><strong>Süre:</strong> @trainer.ServiceTime dk</p>
+            <p><strong>Çalışma Saatleri:</strong> @trainer.WorkStartTime - @trainer.WorkEndTime</p>
+
+            <hr />
+
+            <div class="trainer-actions">
+
+                <a asp-controller="Trainer"
+                   asp-action="EditTrainer"
+                   asp-route-id="@trainer.TrainerId"
+                   >
+                    Düzenle 
+                </a>
+
+                <a asp-controller="Trainer"
+                   asp-action="DeleteTrainer"
+                   asp-route-id="@trainer.TrainerId"
+                   >
+                    Sil 
+                </a>
+
+            </div>
+        </div>
+    }
+</div>

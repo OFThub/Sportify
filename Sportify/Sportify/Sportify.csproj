@@ -17,12 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Gym\" />
-    <Folder Include="Views\Member\" />
-    <Folder Include="Views\Login\" />
-    <Folder Include="Views\Register\" />
-    <Folder Include="Views\Trainer\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 

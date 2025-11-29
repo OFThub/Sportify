@@ -1,0 +1,46 @@
+﻿@using Sportify.Models;
+@model Gym;
+
+@{
+    ViewData["Title"] = "Salon Ekle";
+}
+
+<h2>Yeni Spor Salonu Ekle</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="CreateGym" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="GymName"></label>
+                <input asp-for="GymName" class="form-control" />
+                <span asp-validation-for="GymName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="OpenTime"></label>
+                <input asp-for="OpenTime" type="time" class="form-control" />
+                <span asp-validation-for="OpenTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="CloseTime"></label>
+                <input asp-for="CloseTime" type="time" class="form-control" />
+                <span asp-validation-for="CloseTime" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit">Salon Ekle</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

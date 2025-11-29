@@ -235,4 +235,4 @@ C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\obj\Debug\net9.0\c
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\obj\Debug\net9.0\compressed\ru9x6ftjn7-qlccset4i1.gz
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\obj\Debug\net9.0\compressed\iqtkohi7d1-xzw0cte36n.gz
 C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\obj\Debug\net9.0\compressed\09ipif6lm1-jfsiqqwiad.gz
-C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\obj\Debug\net9.0\compressed\i2mrmmtnp0-3cn3tris96.gz
+C:\Users\ömer\OneDrive\Masaüstü\Sportify\Sportify\Sportify\obj\Debug\net9.0\compressed\i2mrmmtnp0-p7kp947skn.gz

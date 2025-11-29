@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Sportify.Models
 {
     public class ErrorViewModel
@@ -6,4 +8,5 @@ namespace Sportify.Models
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
+
 }

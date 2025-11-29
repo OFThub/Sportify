@@ -1,0 +1,57 @@
+﻿@model Sportify.Models.Trainer
+
+<h2>Eğitmen Oluştur</h2>
+
+<form asp-action="CreateTrainer" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="TrainerName"></label>
+        <input asp-for="TrainerName" class="form-control" readonly />
+        <span asp-validation-for="TrainerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WorkStartTime"></label>
+        <input asp-for="WorkStartTime" type="time" class="form-control" />
+        <span asp-validation-for="WorkStartTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WorkEndTime"></label>
+        <input asp-for="WorkEndTime" type="time" class="form-control" />
+        <span asp-validation-for="WorkEndTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServiceName"></label>
+        <input asp-for="ServiceName" class="form-control" />
+        <span asp-validation-for="ServiceName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServiceTime"></label>
+        <input asp-for="ServiceTime" type="number" class="form-control" />
+        <span asp-validation-for="ServiceTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServicePrice"></label>
+        <input asp-for="ServicePrice" type="number" class="form-control" />
+        <span asp-validation-for="ServicePrice" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GymId"></label>
+        <select asp-for="GymId" asp-items="@(ViewBag.Salonlar)" class="form-control">
+            <option value="">-- Lütfen Spor Salonu Seçin --</option>
+        </select>
+        <span asp-validation-for="GymId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Eğitmen Oluştur</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

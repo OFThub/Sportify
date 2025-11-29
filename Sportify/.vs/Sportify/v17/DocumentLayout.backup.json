@@ -1,52 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\wwwroot\\css\\account.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\wwwroot\\css\\account.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\account\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\account\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\models\\gym.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\models\\gym.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\account\\verifyemail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\account\\verifyemail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\migrations\\20251126134534_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\migrations\\20251126134534_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -54,21 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "account.css",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\wwwroot\\css\\account.css",
-              "RelativeDocumentMoniker": "Sportify\\wwwroot\\css\\account.css",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\wwwroot\\css\\account.css",
-              "RelativeToolTip": "Sportify\\wwwroot\\css\\account.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-26T17:02:35.26Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
@@ -76,131 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "20251126134534_InitialCreate.cs",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Migrations\\20251126134534_InitialCreate.cs",
-              "RelativeDocumentMoniker": "Sportify\\Migrations\\20251126134534_InitialCreate.cs",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Migrations\\20251126134534_InitialCreate.cs",
-              "RelativeToolTip": "Sportify\\Migrations\\20251126134534_InitialCreate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T13:45:34.78Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Sportify\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Sportify\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T13:42:28.654Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Gym.cs",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Models\\Gym.cs",
-              "RelativeDocumentMoniker": "Sportify\\Models\\Gym.cs",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Models\\Gym.cs",
-              "RelativeToolTip": "Sportify\\Models\\Gym.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAqwBAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T13:33:49.972Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Sportify\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Sportify\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAIwCIAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T13:34:17.67Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "Sportify\\Views\\_ViewImports.cshtml",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "Sportify\\Views\\_ViewImports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T13:33:20.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_LoginPartial.cshtml",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Shared\\_LoginPartial.cshtml",
-              "RelativeDocumentMoniker": "Sportify\\Views\\Shared\\_LoginPartial.cshtml",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Shared\\_LoginPartial.cshtml",
-              "RelativeToolTip": "Sportify\\Views\\Shared\\_LoginPartial.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T13:32:14.694Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "VerifyEmail.cshtml",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Account\\VerifyEmail.cshtml",
-              "RelativeDocumentMoniker": "Sportify\\Views\\Account\\VerifyEmail.cshtml",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Account\\VerifyEmail.cshtml",
-              "RelativeToolTip": "Sportify\\Views\\Account\\VerifyEmail.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T13:31:33.835Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "Sportify\\Views\\Account\\Register.cshtml",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Account\\Register.cshtml",
-              "RelativeToolTip": "Sportify\\Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T13:31:22.516Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "Sportify\\Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "Sportify\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T13:31:06.761Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ChangePassword.cshtml",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Account\\ChangePassword.cshtml",
-              "RelativeDocumentMoniker": "Sportify\\Views\\Account\\ChangePassword.cshtml",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Account\\ChangePassword.cshtml",
-              "RelativeToolTip": "Sportify\\Views\\Account\\ChangePassword.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T13:30:41.033Z",
-              "EditorCaption": ""
             }
           ]
         }

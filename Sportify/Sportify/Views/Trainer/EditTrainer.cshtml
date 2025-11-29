@@ -1,0 +1,73 @@
+﻿@model Sportify.Models.Trainer
+
+@{
+    ViewData["Title"] = "Eğitmen Düzenle";
+}
+
+<h2>Eğitmen Düzenle</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="EditTrainer">
+            
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="TrainerId" />
+
+            <div class="form-group">
+                <label asp-for="TrainerName"></label>
+                <input asp-for="TrainerName" class="form-control" readonly />
+                <span asp-validation-for="TrainerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WorkStartTime"></label>
+                <input asp-for="WorkStartTime" type="time" class="form-control" />
+                <span asp-validation-for="WorkStartTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WorkEndTime"></label>
+                <input asp-for="WorkEndTime" type="time" class="form-control" />
+                <span asp-validation-for="WorkEndTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ServiceName"></label>
+                <input asp-for="ServiceName" class="form-control" />
+                <span asp-validation-for="ServiceName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ServiceTime"></label>
+                <input asp-for="ServiceTime" type="number" class="form-control" />
+                <span asp-validation-for="ServiceTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ServicePrice"></label>
+                <input asp-for="ServicePrice" type="number" class="form-control" />
+                <span asp-validation-for="ServicePrice" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="GymId"></label>
+                <select asp-for="GymId" asp-items="ViewBag.Salonlar" class="form-control">
+                    <option value="">-- Lütfen Spor Salonu Seçin --</option>
+                </select>
+                <span asp-validation-for="GymId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <button type="submit">Kaydet</button>
+                <a asp-action="Index">Listeye Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

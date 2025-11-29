@@ -44,6 +44,42 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxWZXJpZnlFbWFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Appointment/BookAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcQm9va0FwcG9pbnRtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Appointment/CreateAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcQ3JlYXRlQXBwb2ludG1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Appointment/DeleteAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcRGVsZXRlQXBwb2ludG1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Appointment/ListAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcTGlzdEFwcG9pbnRtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Gym/CreateGym.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3ltXENyZWF0ZUd5bS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Gym/DeleteGym.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3ltXERlbGV0ZUd5bS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Gym/EditGym.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3ltXEVkaXRHeW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Gym/ListGym.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3ltXExpc3RHeW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Home/Admin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -74,6 +110,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Trainer/CreateTrainer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5lclxDcmVhdGVUcmFpbmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Trainer/DeleteTrainer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5lclxEZWxldGVUcmFpbmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Trainer/EditTrainer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5lclxFZGl0VHJhaW5lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/Trainer/ListTrainer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhaW5lclxMaXN0VHJhaW5lci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ömer/OneDrive/Masaüstü/Sportify/Sportify/Sportify/Views/_ViewImports.cshtml]

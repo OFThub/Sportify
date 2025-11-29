@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Sportify.Models
+namespace Sportify.ViewModels
 {
     public class Login
     {

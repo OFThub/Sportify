@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Sportify.Models;
+using Sportify.ViewModels;
 
 namespace Sportify.Controllers
 {

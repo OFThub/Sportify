@@ -1,0 +1,45 @@
+﻿@model List<Sportify.Models.AppointmentDetailViewModel>
+@{
+    ViewData["Title"] = "Randevu Listesi";
+}
+
+<h1 class="mb-4">Randevu Listesi</h1>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Henüz oluşturulmuş bir randevu bulunmamaktadır.</div>
+}
+else
+{
+    <div class="Appointment-list-container row">
+        @foreach (var Appointment in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+
+                        <h5 class="card-title text-primary">@Appointment.UserName</h5>
+                        <hr />
+
+                        <h6 class="card-subtitle mb-2 text-dark">@Appointment.TrainerName</h6>
+                        <p class="card-text">
+                            @Appointment.ServiceName
+                        </p>
+                        <p class="card-text">
+                            @Appointment.ServiceTime dakika
+                        </p>
+
+                        <div class="mt-3">
+                            <a asp-controller="Appointment"
+                               asp-action="DeleteAppointment"
+                               asp-route-id="@Appointment.AppointmentId">
+                                Sil
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

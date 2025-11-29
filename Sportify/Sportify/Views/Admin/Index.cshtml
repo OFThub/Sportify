@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Yönetici Paneli";
+}
+
+<h1><i class="fas fa-tools"></i> Yönetici Paneli Ana Sayfası</h1>
+<p class="lead">Lütfen yapmak istediğiniz yönetim işlemini seçin.</p>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">Spor Salonları</div>
+            <div class="card-body">
+                <p class="card-text">Sistemdeki spor salonlarını yönetin.</p>
+                <a asp-controller="Gym" asp-action="ListGym" class="btn btn-primary btn-block">
+                    Salon Yönetimine Git
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">Antrenörler (Eğitmenler)</div>
+            <div class="card-body">
+                <p class="card-text">Sistemdeki eğitmenleri yönetin ve detaylarını güncelleyin.</p>
+                <a asp-controller="Trainer" asp-action="ListTrainer" class="btn btn-success btn-block">
+                    Eğitmen Yönetimine Git
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">Randevu Yönetimi</div>
+            <div class="card-body">
+                <p class="card-text">Tüm üye randevularını görüntüleyin, onaylayın veya iptal edin.</p>
+                <a asp-controller="Appointment" asp-action="ListAppointment" class="btn btn-info btn-block">
+                    Randevu Yönetimine Git
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

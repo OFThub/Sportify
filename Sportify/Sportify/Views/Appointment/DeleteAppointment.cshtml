@@ -1,0 +1,53 @@
+﻿@model Sportify.Models.AppointmentDetailViewModel
+
+@{
+    ViewData["Title"] = "Randevu Sil";
+}
+
+<h2 class="text-danger">Silme İşlemi Onayı</h2>
+
+<h3>Bu Randevuyu silmek istediğinizden emin misiniz?</h3>
+<hr />
+
+<div>
+    <h4>Randevu Detayları</h4>
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TrainerName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TrainerName)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.ServiceName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ServiceName)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.ServiceTime)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ServiceTime)
+        </dd>
+
+    </dl>
+
+    <form asp-controller="Appointment" asp-action="DeleteConfirmed" method="post">
+
+        <input type="hidden" name="id" value="@Model.AppointmentId" />
+
+        <input type="hidden" asp-for="AppointmentId" />
+
+        <button type="submit">Silme İşlemini Onayla</button>
+        <a asp-action="ListAppointment">Listeye Geri Dön</a>
+    </form>
+</div>

@@ -4,22 +4,22 @@ namespace Sportify.Models
 {
     public class Gym
     {
+        [Key]
         public int GymId { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = "Salon adý zorunludur.")]
+        [StringLength(100, ErrorMessage = "Salon adý 100 karakterden uzun olamaz.")]
         [Display(Name = "Salon Adý")]
         public string GymName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Açýlýþ saati zorunludur.")]
+        [DataType(DataType.Time)]
         [Display(Name = "Açýlýþ Saati")]
         public TimeSpan OpenTime { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Kapanýþ saati zorunludur.")]
+        [DataType(DataType.Time)]
         [Display(Name = "Kapanýþ Saati")]
         public TimeSpan CloseTime { get; set; }
-
-        public ICollection<Service> GymServices { get; set; } = new List<Service>();
-        public ICollection<Trainer> GymTrainers { get; set; } = new List<Trainer>();
     }
 }
