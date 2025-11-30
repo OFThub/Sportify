@@ -138,7 +138,7 @@ namespace Sportify.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!TrainerExists(model.TrainerId)) return NotFound();
-                    throw; // Diğer beklenmedik hataları fırlat
+                    throw;
                 }
                 return RedirectToAction("Index", "Home");
             }

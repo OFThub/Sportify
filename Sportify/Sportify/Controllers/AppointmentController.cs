@@ -15,7 +15,7 @@ public class AppointmentController : Controller
         _userManager = userManager;
     }
 
-    [Authorize]
+    [Authorize(Roles = "User")]
     [HttpGet]
     public async Task<IActionResult> BookAppointment()
     {
@@ -29,14 +29,14 @@ public class AppointmentController : Controller
 
     //CREATE
 
-    [Authorize]
+    [Authorize(Roles = "User")]
     [HttpGet]
     public IActionResult CreateAppointment()
     {
         return View();
     }
 
-    [Authorize]
+    [Authorize(Roles = "User")]
     [HttpPost]
     public async Task<IActionResult> CreateAppointment(int trainerId)
     {

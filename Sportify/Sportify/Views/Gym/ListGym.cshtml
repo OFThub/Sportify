@@ -1,30 +1,39 @@
 ﻿@model List<Sportify.Models.Gym>
 
-<div class="gym-list-container">
-    @foreach (var gym in Model)
-    {
-        <div class="gym-card">
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Henüz oluşturulmuş bir Salon bulunmamaktadır.</div>
+}
+else
+{
+    <div class="gym-list-container">
+        @foreach (var gym in Model)
+        {
+            <div class="gym-card">
 
-            <h2>@gym.GymName</h2>
-            <p><strong>Çalışma Saatleri:</strong> @gym.OpenTime - @gym.CloseTime</p>
+                <h2>@gym.GymName</h2>
+                <p><strong>Çalışma Saatleri:</strong> @gym.OpenTime - @gym.CloseTime</p>
 
-            <hr />
+                <hr />
 
-            <div class="gym-actions">
+                <div class="gym-actions">
 
-                <a asp-controller="Gym"
-                   asp-action="EditGym"
-                   asp-route-id="@gym.GymId">
-                    Düzenle
-                </a>
+                    <a asp-controller="Gym"
+                       asp-action="EditGym"
+                       asp-route-id="@gym.GymId">
+                        Düzenle
+                    </a>
 
-                <a asp-controller="Gym"
-                   asp-action="DeleteGym"
-                   asp-route-id="@gym.GymId">
-                    Sil
-                </a>
+                    <a asp-controller="Gym"
+                       asp-action="DeleteGym"
+                       asp-route-id="@gym.GymId">
+                        Sil
+                    </a>
 
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
+
+

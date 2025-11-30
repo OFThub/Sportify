@@ -1,35 +1,41 @@
 ﻿@model List<Sportify.Models.Trainer>
 
-<div class="trainer-list-container">
-    @foreach (var trainer in Model)
-    {
-        <div class="trainer-card">
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Henüz oluşturulmuş bir randevu bulunmamaktadır.</div>
+}
 
-            <h2>@trainer.TrainerName</h2>
-            <p><strong>Hizmet:</strong> @trainer.ServiceName</p>
-            <p><strong>Fiyat:</strong> @trainer.ServicePrice TL</p>
-            <p><strong>Süre:</strong> @trainer.ServiceTime dk</p>
-            <p><strong>Çalışma Saatleri:</strong> @trainer.WorkStartTime - @trainer.WorkEndTime</p>
+else
+{
+    <div class="trainer-list-container">
+        @foreach (var trainer in Model)
+        {
+            <div class="trainer-card">
 
-            <hr />
+                <h2>@trainer.TrainerName</h2>
+                <p><strong>Hizmet:</strong> @trainer.ServiceName</p>
+                <p><strong>Fiyat:</strong> @trainer.ServicePrice TL</p>
+                <p><strong>Süre:</strong> @trainer.ServiceTime dk</p>
+                <p><strong>Çalışma Saatleri:</strong> @trainer.WorkStartTime - @trainer.WorkEndTime</p>
 
-            <div class="trainer-actions">
+                <hr />
 
-                <a asp-controller="Trainer"
-                   asp-action="EditTrainer"
-                   asp-route-id="@trainer.TrainerId"
-                   >
-                    Düzenle 
-                </a>
+                <div class="trainer-actions">
 
-                <a asp-controller="Trainer"
-                   asp-action="DeleteTrainer"
-                   asp-route-id="@trainer.TrainerId"
-                   >
-                    Sil 
-                </a>
+                    <a asp-controller="Trainer"
+                       asp-action="EditTrainer"
+                       asp-route-id="@trainer.TrainerId">
+                        Düzenle
+                    </a>
 
+                    <a asp-controller="Trainer"
+                       asp-action="DeleteTrainer"
+                       asp-route-id="@trainer.TrainerId">
+                        Sil
+                    </a>
+
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
