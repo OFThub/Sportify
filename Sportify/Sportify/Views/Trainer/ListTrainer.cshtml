@@ -13,10 +13,22 @@ else
             <div class="trainer-card">
 
                 <h2>@trainer.TrainerName</h2>
-                <p><strong>Hizmet:</strong> @trainer.ServiceName</p>
-                <p><strong>Fiyat:</strong> @trainer.ServicePrice TL</p>
-                <p><strong>Süre:</strong> @trainer.ServiceTime dk</p>
                 <p><strong>Çalışma Saatleri:</strong> @trainer.WorkStartTime - @trainer.WorkEndTime</p>
+                <p><strong>Çalıştığı Salon:</strong> @trainer.gym.GymName</p>
+                @if(trainer.service!=null && trainer.service.Any())
+                {
+                    foreach(var item in trainer.service)
+                    {
+                        <span>@item.ServiceName</span>
+                        <span>@item.ServicePrice TL</span>
+                        <span>@item.ServiceTime dk</span>
+                        <br />
+                    }
+                }
+                else
+                {
+                    <span>Hizmet bulunmamaktadır.</span>
+                }
 
                 <hr />
 

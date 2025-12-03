@@ -1,20 +1,31 @@
-﻿@model List<Sportify.Models.Trainer>
+﻿@model List<Sportify.Models.Service>
 
-<div class="trainer-list-container">
-    @foreach (var trainer in Model)
+<div class="service-list-container">
+    @foreach (var service in Model)
     {
-        <div class="trainer-card">
-            <h2>@trainer.TrainerName</h2>
-            <p>@trainer.ServiceName</p>
-            <p>@trainer.ServicePrice</p>
-            <p>@trainer.ServiceTime dk</p>
-            <p>@trainer.WorkStartTime-@trainer.WorkEndTime</p>
+        <div class="service-card">
+            <h2>@service.ServiceName</h2>
+            <p>@service.ServiceTime dakika</p>
+            <p>@service.ServicePrice TL</p>
+
+            @if (service.gym != null)
+            {
+                <p><strong>Salon:</strong> @service.gym.GymName</p>
+            }
+
+            @if (service.trainer != null)
+            {
+                <p><strong>Eğitmen:</strong> @service.trainer.TrainerName</p>
+            }
 
             <form asp-controller="Appointment" asp-action="CreateAppointment" method="post">
-
-                <input type="hidden" name="trainerId" value="@trainer.TrainerId" />
-
-                <button type="submit" class="select-button">
+                <input type="hidden" name="serviceId" value="@service.ServiceId" />
+                <input type="hidden" name="service" value="@service" />
+                <input type="hidden" name="trainerId" value="@service.TrainerId" />
+                <input type="hidden" name="trainer" value="@service.trainer" />
+                <input type="hidden" name="gymId" value="@service.GymId" />
+                <input type="hidden" name="gym" value="@service.gym" />
+                <button type="submit" name="hata" class="select-button">
                     Randevu Al
                 </button>
             </form>

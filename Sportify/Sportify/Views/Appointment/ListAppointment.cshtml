@@ -1,45 +1,38 @@
-﻿@model List<Sportify.Models.AppointmentDetailViewModel>
-@{
-    ViewData["Title"] = "Randevu Listesi";
-}
-
-<h1 class="mb-4">Randevu Listesi</h1>
+﻿@model List<Sportify.Models.Appointment>
 
 @if (Model == null || !Model.Any())
 {
-    <div class="alert alert-info">Henüz oluşturulmuş bir randevu bulunmamaktadır.</div>
+    <div class="alert alert-info">Henüz oluşturulmuş bir Randevu bulunmamaktadır.</div>
 }
 else
 {
-    <div class="Appointment-list-container row">
-        @foreach (var Appointment in Model)
+    <div class="appointment-list-container">
+        @foreach (var appointment in Model)
         {
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
+            <div class="appointment-card">
 
-                        <h5 class="card-title text-primary">@Appointment.UserName</h5>
-                        <hr />
+                <h2>@appointment.UserName</h2>
+                <p><strong>Salon:</strong> @appointment.gym.GymName</p>
+                <p><strong>Eğitmen:</strong> @appointment.trainer.TrainerName</p>
+                <p><strong>Çalışma Saatleri:</strong> @appointment.trainer.WorkStartTime - @appointment.trainer.WorkEndTime</p>
+                <p><strong>Servis Adı:</strong> @appointment.service.ServiceName</p>
+                <p><strong>Servis Süresi:</strong> @appointment.service.ServiceTime dk</p>
+                <p><strong>Servis Ücreti:</strong> @appointment.service.ServicePrice TL</p>
 
-                        <h6 class="card-subtitle mb-2 text-dark">@Appointment.TrainerName</h6>
-                        <p class="card-text">
-                            @Appointment.ServiceName
-                        </p>
-                        <p class="card-text">
-                            @Appointment.ServiceTime dakika
-                        </p>
+                <hr />
 
-                        <div class="mt-3">
-                            <a asp-controller="Appointment"
-                               asp-action="DeleteAppointment"
-                               asp-route-id="@Appointment.AppointmentId">
-                                Sil
-                            </a>
-                        </div>
+                <div class="appointment-actions">
 
-                    </div>
+                    <a asp-controller="Appointment"
+                       asp-action="DeleteAppointment"
+                       asp-route-id="@appointment.AppointmentId">
+                        Sil
+                    </a>
+
                 </div>
             </div>
         }
     </div>
 }
+
+

@@ -16,6 +16,7 @@ namespace Sportify.Data
         public DbSet<Trainer> Egitmenler { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Appointment> Randevular { get; set; }
+        public DbSet<Service> Servisler { get; set; }
 
     }
 }

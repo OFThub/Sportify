@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Sportify.Data;
 using Sportify.Models;
 using Sportify.ViewModels;
 
@@ -10,12 +12,14 @@ namespace Sportify.Controllers
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        public ApplicationDbContext _context;
 
-        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.roleManager = roleManager;
+            _context = context;
         }
 
         [HttpGet]
@@ -54,6 +58,15 @@ namespace Sportify.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(Register model)
         {
+            bool exists = await _context.Users
+                .AnyAsync(x => x.FullName.ToLower() == model.Name.ToLower());
+
+            if (exists)
+            {
+                ModelState.AddModelError("Name", "Bu isimde bir kullanıcı zaten var!");
+                return View(model);
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);

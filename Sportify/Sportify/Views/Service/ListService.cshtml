@@ -1,0 +1,43 @@
+﻿@model List<Sportify.Models.Service>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">Henüz oluşturulmuş bir Salon bulunmamaktadır.</div>
+}
+else
+{
+    <div class="service-list-container">
+        @foreach (var service in Model)
+        {
+            <div class="service-card">
+
+                <h2>@service.ServiceName</h2>
+                <p><strong>Servis Süresi:</strong> @service.ServiceTime dk</p>
+                <p><strong>Servis Ücreti:</strong> @service.ServicePrice TL</p>
+                <p><strong>Servis Verilen Salon:</strong> @service.gym.GymName</p>
+                <p><strong>Servisi Veren Eğitmen:</strong> @service.trainer.TrainerName</p>
+                <p><strong>Servisin Verildiği Saatler:</strong> @service.trainer.WorkStartTime-@service.trainer.WorkEndTime</p>
+
+                <hr />
+
+                <div class="service-actions">
+
+                    <a asp-controller="Service"
+                       asp-action="EditService"
+                       asp-route-id="@service.ServiceId">
+                        Düzenle
+                    </a>
+
+                    <a asp-controller="Service"
+                       asp-action="DeleteService"
+                       asp-route-id="@service.ServiceId">
+                        Sil
+                    </a>
+
+                </div>
+            </div>
+        }
+    </div>
+}
+
+

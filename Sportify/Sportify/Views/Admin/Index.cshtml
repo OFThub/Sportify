@@ -23,11 +23,23 @@
 
     <div class="col-md-4 mb-4">
         <div class="card shadow">
-            <div class="card-header bg-success text-white">Antrenörler (Eğitmenler)</div>
+            <div class="card-header bg-success text-white">Antrenörler</div>
             <div class="card-body">
                 <p class="card-text">Sistemdeki eğitmenleri yönetin ve detaylarını güncelleyin.</p>
                 <a asp-controller="Trainer" asp-action="ListTrainer" class="btn btn-success btn-block">
                     Eğitmen Yönetimine Git
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">Hizmetler</div>
+            <div class="card-body">
+                <p class="card-text">Sistemdeki hizmetleri yönetin ve detaylarını güncelleyin.</p>
+                <a asp-controller="Service" asp-action="ListService" class="btn btn-success btn-block">
+                    Servis Yönetimine Git
                 </a>
             </div>
         </div>

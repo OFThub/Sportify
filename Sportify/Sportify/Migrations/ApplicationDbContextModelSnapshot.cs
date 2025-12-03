@@ -232,7 +232,13 @@ namespace Sportify.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
 
-                    b.Property<int>("TrainerId")
+                    b.Property<int?>("GymId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TrainerId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserName")
@@ -240,6 +246,12 @@ namespace Sportify.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AppointmentId");
+
+                    b.HasIndex("GymId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.HasIndex("TrainerId");
 
                     b.ToTable("Randevular");
                 });
@@ -260,12 +272,53 @@ namespace Sportify.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<TimeSpan>("OpenTime")
                         .HasColumnType("time");
 
                     b.HasKey("GymId");
 
                     b.ToTable("Salonlar");
+                });
+
+            modelBuilder.Entity("Sportify.Models.Service", b =>
+                {
+                    b.Property<int>("ServiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"));
+
+                    b.Property<int?>("GymId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ServicePrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceTime")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TrainerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ServiceId");
+
+                    b.HasIndex("GymId");
+
+                    b.HasIndex("TrainerId");
+
+                    b.ToTable("Servisler");
                 });
 
             modelBuilder.Entity("Sportify.Models.Trainer", b =>
@@ -277,17 +330,6 @@ namespace Sportify.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrainerId"));
 
                     b.Property<int>("GymId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ServiceName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("ServicePrice")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceTime")
                         .HasColumnType("int");
 
                     b.Property<string>("TrainerName")
@@ -302,6 +344,8 @@ namespace Sportify.Migrations
                         .HasColumnType("time");
 
                     b.HasKey("TrainerId");
+
+                    b.HasIndex("GymId");
 
                     b.ToTable("Egitmenler");
                 });
@@ -355,6 +399,65 @@ namespace Sportify.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Sportify.Models.Appointment", b =>
+                {
+                    b.HasOne("Sportify.Models.Gym", "gym")
+                        .WithMany()
+                        .HasForeignKey("GymId");
+
+                    b.HasOne("Sportify.Models.Service", "service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId");
+
+                    b.HasOne("Sportify.Models.Trainer", "trainer")
+                        .WithMany()
+                        .HasForeignKey("TrainerId");
+
+                    b.Navigation("gym");
+
+                    b.Navigation("service");
+
+                    b.Navigation("trainer");
+                });
+
+            modelBuilder.Entity("Sportify.Models.Service", b =>
+                {
+                    b.HasOne("Sportify.Models.Gym", "gym")
+                        .WithMany("Services")
+                        .HasForeignKey("GymId");
+
+                    b.HasOne("Sportify.Models.Trainer", "trainer")
+                        .WithMany("service")
+                        .HasForeignKey("TrainerId");
+
+                    b.Navigation("gym");
+
+                    b.Navigation("trainer");
+                });
+
+            modelBuilder.Entity("Sportify.Models.Trainer", b =>
+                {
+                    b.HasOne("Sportify.Models.Gym", "gym")
+                        .WithMany("Trainers")
+                        .HasForeignKey("GymId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("gym");
+                });
+
+            modelBuilder.Entity("Sportify.Models.Gym", b =>
+                {
+                    b.Navigation("Services");
+
+                    b.Navigation("Trainers");
+                });
+
+            modelBuilder.Entity("Sportify.Models.Trainer", b =>
+                {
+                    b.Navigation("service");
                 });
 #pragma warning restore 612, 618
         }

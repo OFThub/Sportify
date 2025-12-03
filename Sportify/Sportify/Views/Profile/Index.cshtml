@@ -1,4 +1,5 @@
-﻿@model Sportify.Models.ProfileViewModel
+﻿@using Sportify.ViewModels
+@model ProfileViewModel
 @{
     ViewData["Title"] = "Profilim ve Eğitimlerim";
 }
@@ -6,13 +7,13 @@
 <style>
     .horizontal-scroll-container {
         display: flex;
-        overflow-x: auto; 
-        padding-bottom: 1rem; 
+        overflow-x: auto;
+        padding-bottom: 1rem;
     }
 
     .info-card {
         flex: 0 0 auto;
-        width: 300px; 
+        width: 300px;
         margin-right: 1rem;
     }
 
@@ -29,6 +30,23 @@
 <div class="container">
     <h2 class="mt-4">Profilim</h2>
     <hr />
+    @if(Model.MyTrainings!=null&&Model.MyTrainings.Any())
+    {
+        @foreach (var item in Model.MyTrainings)
+        {
+            <div class="card info-card shadow-sm border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Eğitmen Adı: @item.TrainerName</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Çalışma Saatleri: @item.WorkStartTime - @item.WorkEndTime</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Çalıştığı Salon: @item.gym.GymName</h6>
+                    <div class="card-footer bg-light d-flex justify-content-end">
+                        <a asp-controller="Trainer" asp-action="EditTrainer" asp-route-id="@item.TrainerId" class="btn btn-sm btn-outline-warning me-2">Düzenle</a>
+                        <a asp-controller="Trainer" asp-action="DeleteTrainer" asp-route-id="@item.TrainerId" class="btn btn-sm btn-outline-danger">Sil</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
 
     <h3 class="mt-5 mb-3">Randevularım</h3>
 
@@ -39,8 +57,8 @@
             {
                 <div class="card info-card shadow-sm border-primary">
                     <div class="card-body">
-                        <h5 class="card-title text-primary">Eğitmen: @item.TrainerName</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Hizmet: @item.ServiceName</h6>
+                        <h5 class="card-title text-primary">Eğitmen: @item.trainer.TrainerName</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Hizmet: @item.service.ServiceName</h6>
 
                         <ul class="list-group list-group-flush mt-3">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -49,7 +67,7 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Süre:
-                                <span>@item.ServiceTime dakika</span>
+                                <span>@item.service.ServiceTime dakika</span>
                             </li>
                         </ul>
                     </div>
@@ -73,37 +91,22 @@
 
     <hr class="mt-5" />
 
-    <h3 class="mt-5 mb-3">Eğitimlerim (Eğitmen Kayıtlarım)</h3>
+    <h3 class="mt-5 mb-3">Eğitimlerim</h3>
 
-    @if (Model.MyTrainings != null && Model.MyTrainings.Any())
+    @if (Model.MyServices != null && Model.MyServices.Any())
     {
         <div class="horizontal-scroll-container">
-            @foreach (var item in Model.MyTrainings)
+            @foreach (var item in Model.MyServices)
             {
                 <div class="card info-card shadow-sm border-success">
                     <div class="card-body">
-                        <h5 class="card-title text-success">@item.ServiceName</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Eğitmen: @item.TrainerName</h6>
-
-                        <ul class="list-group list-group-flush mt-3">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Çalışma Saatleri:
-                                <span>@item.WorkStartTime.ToString(@"hh\:mm") - @item.WorkEndTime.ToString(@"hh\:mm")</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Hizmet Süresi:
-                                <span>@item.ServiceTime dakika</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Fiyat:
-                                <span>@item.ServicePrice ₺</span>
-                            </li>
-                        </ul>
-
+                        <h6 class="card-subtitle mb-2 text-muted">Eğitim: @item.ServiceName</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Eğitim Süresi: @item.ServiceTime</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Eğitim Ücreti: @item.ServicePrice</h6>
                     </div>
                     <div class="card-footer bg-light d-flex justify-content-end">
-                        <a asp-controller="Trainer" asp-action="EditTrainer" asp-route-id="@item.TrainerId" class="btn btn-sm btn-outline-warning me-2">Düzenle</a>
-                        <a asp-controller="Trainer" asp-action="DeleteTrainer" asp-route-id="@item.TrainerId" class="btn btn-sm btn-outline-danger">Sil</a>
+                        <a asp-controller="Service" asp-action="EditService" asp-route-id="@item.ServiceId" class="btn btn-sm btn-outline-warning me-2">Düzenle</a>
+                        <a asp-controller="Service" asp-action="DeleteService" asp-route-id="@item.ServiceId" class="btn btn-sm btn-outline-danger">Sil</a>
                     </div>
                 </div>
             }
@@ -119,4 +122,50 @@
     <div class="mt-4">
         <a asp-controller="Trainer" asp-action="CreateTrainer" class="btn btn-success">Yeni Eğitmen Kaydı Oluştur</a>
     </div>
+
+
+    <hr class="mt-5" />
+
+    <h3 class="mt-5 mb-3">Spor Salonlarım</h3>
+
+    @if (Model.MyGyms != null && Model.MyGyms.Any())
+    {
+        <div class="horizontal-scroll-container">
+            @foreach (var item in Model.MyGyms)
+            {
+                <div class="card info-card shadow-sm border-info">
+                    <div class="card-body">
+                        <h5 class="card-title text-info">@item.GymName</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">ID: @item.GymId</h6>
+
+                        <ul class="list-group list-group-flush mt-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Çalışma Saatleri:
+                                <span>@item.OpenTime</span>-<span>@item.CloseTime</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-light d-flex justify-content-end">
+                        <a asp-controller="Gym" asp-action="EditGym" asp-route-id="@item.GymId" class="btn btn-sm btn-outline-warning me-2">Düzenle</a>
+                        <a asp-controller="Gym" asp-action="DeleteGym" asp-route-id="@item.GymId" class="btn btn-sm btn-outline-danger">Sil</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-secondary" role="alert">
+            Kayıtlı spor salonu kaydınız bulunmamaktadır.
+        </div>
+    }
+
+    <div class="mt-4 mb-5">
+        <a asp-controller="Gym" asp-action="CreateGym" class="btn btn-info">Yeni Spor Salonu Kaydı Oluştur</a>
+    </div>
+
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

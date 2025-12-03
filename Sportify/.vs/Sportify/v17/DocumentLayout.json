@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\trainer\\listtrainer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\trainer\\listtrainer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\controllers\\trainercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\controllers\\trainercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\gym\\listgym.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\gym\\listgym.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\controllers\\gymcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\controllers\\gymcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\views\\appointment\\bookappointment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\views\\appointment\\bookappointment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|c:\\users\\\u00F6mer\\onedrive\\masa\u00FCst\u00FC\\sportify\\sportify\\sportify\\models\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78AF2AAC-4599-438F-83A2-4F0916436E29}|Sportify\\Sportify.csproj|solutionrelative:sportify\\models\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,40 +39,79 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ListTrainer.cshtml",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Trainer\\ListTrainer.cshtml",
-              "RelativeDocumentMoniker": "Sportify\\Views\\Trainer\\ListTrainer.cshtml",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Trainer\\ListTrainer.cshtml",
-              "RelativeToolTip": "Sportify\\Views\\Trainer\\ListTrainer.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-30T10:38:20.66Z",
+              "Title": "TrainerController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\TrainerController.cs",
+              "RelativeDocumentMoniker": "Sportify\\Controllers\\TrainerController.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\TrainerController.cs",
+              "RelativeToolTip": "Sportify\\Controllers\\TrainerController.cs",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAAwCkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T20:46:19.145Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ListGym.cshtml",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Gym\\ListGym.cshtml",
-              "RelativeDocumentMoniker": "Sportify\\Views\\Gym\\ListGym.cshtml",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Gym\\ListGym.cshtml",
-              "RelativeToolTip": "Sportify\\Views\\Gym\\ListGym.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-30T10:36:43.205Z",
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Sportify\\Controllers\\ServiceController.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Sportify\\Controllers\\ServiceController.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAmwB0AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T20:46:00.886Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Sportify\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Sportify\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAdAAAAAAAAAA==",
+              "Title": "GymController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\GymController.cs",
+              "RelativeDocumentMoniker": "Sportify\\Controllers\\GymController.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\GymController.cs",
+              "RelativeToolTip": "Sportify\\Controllers\\GymController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAuwJgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-30T10:33:20.154Z",
+              "WhenOpened": "2025-12-03T20:45:22.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BookAppointment.cshtml",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Appointment\\BookAppointment.cshtml",
+              "RelativeDocumentMoniker": "Sportify\\Views\\Appointment\\BookAppointment.cshtml",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Views\\Appointment\\BookAppointment.cshtml",
+              "RelativeToolTip": "Sportify\\Views\\Appointment\\BookAppointment.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-03T20:42:36.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Models\\Appointment.cs",
+              "RelativeDocumentMoniker": "Sportify\\Models\\Appointment.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Models\\Appointment.cs",
+              "RelativeToolTip": "Sportify\\Models\\Appointment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T20:37:46.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "Sportify\\Controllers\\AppointmentController.cs",
+              "ToolTip": "C:\\Users\\\u00F6mer\\OneDrive\\Masa\u00FCst\u00FC\\Sportify\\Sportify\\Sportify\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "Sportify\\Controllers\\AppointmentController.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAIwBIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T20:37:19.258Z",
               "EditorCaption": ""
             },
             {

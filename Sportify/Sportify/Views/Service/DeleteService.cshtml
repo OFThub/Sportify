@@ -1,0 +1,20 @@
+﻿@model Sportify.Models.Service
+
+@{
+    ViewData["Title"] = "Servis Sil";
+}
+
+<h3>Bu servisi silmek istediğinize emin misiniz?</h3>
+
+<div class="mb-3">
+    <h4>@Model.ServiceName</h4>
+    <p>Servis Süresi: @Model.ServiceTime</p>
+    <p>Servis Ücreti: @Model.ServicePrice</p>
+</div>
+
+<form asp-controller="Service" asp-action="DeleteConfirmed" asp-route-id="@Model.ServiceId">
+    <input type="hidden" asp-for="ServiceId" />
+
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-controller="Profile" asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>

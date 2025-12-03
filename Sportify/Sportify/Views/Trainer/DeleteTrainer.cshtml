@@ -4,44 +4,16 @@
     ViewData["Title"] = "Eğitmen Sil";
 }
 
-<h2 class="text-danger">Silme İşlemi Onayı</h2>
-
-<h3>Bu eğitmeni silmek istediğinizden emin misiniz?</h3>
-<hr />
+<h3>Bu eğitmeni silmek istediğinize emin misiniz?</h3>
 
 <div>
-    <h4>Eğitmen Detayları</h4>
-    <dl class="row">
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.TrainerName)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.TrainerName)
-        </dd>
-
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.ServiceName)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.ServiceName)
-        </dd>
-
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.WorkStartTime)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.WorkStartTime)
-        </dd>
-
-    </dl>
-
-    <form asp-controller="Trainer" asp-action="DeleteConfirmed" method="post">
-
-        <input type="hidden" name="id" value="@Model.TrainerId" />
-
-        <input type="hidden" asp-for="TrainerId" />
-
-        <button type="submit">Silme İşlemini Onayla</button>
-        <a asp-action="ListTrainer">Listeye Geri Dön</a>
-    </form>
+    <h4>@Model.TrainerName</h4>
+    <p>Açılış: @Model.WorkStartTime</p>
+    <p>Kapanış: @Model.WorkEndTime</p>
 </div>
+
+<form asp-controller="Trainer" asp-action="DeleteConfirmed" asp-route-id="@Model.TrainerId" method="post">
+    <input type="hidden" asp-for="TrainerId" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-controller="Profile" asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>

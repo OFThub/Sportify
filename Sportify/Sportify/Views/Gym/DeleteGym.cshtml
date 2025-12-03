@@ -4,44 +4,16 @@
     ViewData["Title"] = "Salon Sil";
 }
 
-<h2 class="text-danger">Silme İşlemi Onayı</h2>
-
-<h3>Bu salonu silmek istediğinizden emin misiniz?</h3>
-<hr />
+<h3>Bu salonu silmek istediğinize emin misiniz?</h3>
 
 <div>
-    <h4>Salon Detayları</h4>
-    <dl class="row">
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.GymName)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.GymName)
-        </dd>
-
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.OpenTime)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.OpenTime)
-        </dd>
-
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.CloseTime)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.CloseTime)
-        </dd>
-
-    </dl>
-
-    <form asp-controller="Gym" asp-action="DeleteConfirmed" method="post">
-
-        <input type="hidden" name="id" value="@Model.GymId" />
-
-        <input type="hidden" asp-for="GymId" />
-
-        <button type="submit">Silme İşlemini Onayla</button>
-        <a asp-action="ListGym">Listeye Geri Dön</a>
-    </form>
+    <h4>@Model.GymName</h4>
+    <p>Açılış: @Model.OpenTime</p>
+    <p>Kapanış: @Model.CloseTime</p>
 </div>
+
+<form asp-action="DeleteConfirmed" asp-route-id="@Model.GymId">
+    <input type="hidden" asp-for="GymId" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-controller="Profile" asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>

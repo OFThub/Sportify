@@ -13,6 +13,49 @@ else
 
                 <h2>@gym.GymName</h2>
                 <p><strong>Çalışma Saatleri:</strong> @gym.OpenTime - @gym.CloseTime</p>
+                <p><strong>Salon Sahibi:</strong> @gym.Name</p>
+                <p><strong>Salon Eğitmenleri:</strong> </p>
+                @if (gym.Trainers != null && gym.Trainers.Any())
+                {
+                    @foreach (var trainer in gym.Trainers)
+                    {
+                        <span>@trainer.TrainerName</span>
+                        <span>@trainer.WorkStartTime - @trainer.WorkEndTime</span>
+                        <br />
+                        @if (trainer.service != null && trainer.service.Any())
+                        {
+                            @foreach (var service in trainer.service)
+                            {
+                                <ol>@service.ServiceName</ol>
+                                <span>@service.ServicePrice TL</span>
+                                <span>@service.ServiceTime dk</span>
+                                <br />
+                            }
+                        }
+                        else
+                        {
+                            <span>Hizmet bulunmamaktadır.</span>
+                        }                    }
+                }
+                else
+                {
+                    <span>Eğitmen bulunmamaktadır.</span>
+                }
+                <p><strong>Salon Hizmetleri:</strong> </p>
+                @if (gym.Services != null && gym.Services.Any())
+                {
+                    @foreach (var service in gym.Services)
+                    {
+                        <span>@service.ServiceName</span>
+                        <span>@service.ServicePrice TL</span>
+                        <span>@service.ServiceTime dk</span>
+                        <br />
+                    }
+                }
+                else
+                {
+                    <span>Hizmet bulunmamaktadır.</span>
+                }
 
                 <hr />
 

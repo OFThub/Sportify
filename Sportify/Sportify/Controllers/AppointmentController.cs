@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sportify.Data;
 using Sportify.Models;
+using Sportify.ViewModels;
 
 public class AppointmentController : Controller
 {
@@ -19,13 +20,17 @@ public class AppointmentController : Controller
     [HttpGet]
     public async Task<IActionResult> BookAppointment()
     {
-        var trainer = await _context.Egitmenler.ToListAsync();
+        var services = await _context.Servisler
+            .Include(s => s.gym)      
+            .Include(s => s.trainer)  
+            .ToListAsync();
 
-        if (trainer == null)
+        if (services == null || !services.Any())
             return NotFound();
 
-        return View(trainer);
+        return View(services);
     }
+
 
     //CREATE
 
@@ -38,14 +43,33 @@ public class AppointmentController : Controller
 
     [Authorize(Roles = "User")]
     [HttpPost]
-    public async Task<IActionResult> CreateAppointment(int trainerId)
+    public async Task<IActionResult> CreateAppointment(Appointment model)
     {
         var currentUser = await _userManager.GetUserAsync(User);
         var UserName = currentUser.FullName;
 
+        bool exists = await _context.Randevular
+        .AnyAsync(x => x.UserName == UserName &&
+                   x.ServiceId == model.ServiceId &&
+                   x.TrainerId == model.TrainerId &&
+                   x.GymId == model.GymId);
+
+        if (exists)
+        {
+            ModelState.AddModelError("hata", "Bu randevu zaten alınmıştır!");
+            return RedirectToAction("BookAppointment");
+        }
+
+        
+
         var appointment = new Appointment
         {
-            TrainerId = trainerId,
+            TrainerId = model.TrainerId,
+            trainer = model.trainer,
+            GymId = model.GymId,
+            gym=model.gym,
+            ServiceId = model.ServiceId,
+            service=model.service,
             UserName = UserName
         };
 
@@ -61,26 +85,8 @@ public class AppointmentController : Controller
     [HttpGet]
     public async Task<IActionResult> ListAppointment()
     {
-        var query = from appointment in _context.Randevular
-                    join trainer in _context.Egitmenler 
-                    on appointment.TrainerId equals trainer.TrainerId
-                    select new AppointmentDetailViewModel 
-                    {
-                        AppointmentId = appointment.AppointmentId,
-                        UserName = appointment.UserName, 
-                        TrainerName = trainer.TrainerName,
-                        ServiceName = trainer.ServiceName,
-                        ServiceTime = trainer.ServiceTime
-                    };
-
-        var appointmentDetails = await query.ToListAsync();
-
-        if (appointmentDetails == null || appointmentDetails.Count == 0)
-            return View(new List<AppointmentDetailViewModel>());
-
-        var allUsers = await _userManager.Users.ToListAsync();
-
-        return View(appointmentDetails);
+        var appointment = await _context.Randevular.Include(x => x.gym).Include(x => x.service).Include(x=>x.trainer).ToListAsync();
+        return View(appointment);
     }
 
     //UPDATE
@@ -107,9 +113,7 @@ public class AppointmentController : Controller
         {
             AppointmentId = appointment.AppointmentId,
             UserName = appointment.UserName,
-            TrainerName = trainer?.TrainerName, 
-            ServiceName = trainer?.ServiceName,
-            ServiceTime = trainer?.ServiceTime ?? 0
+            TrainerName = trainer?.TrainerName
         };
 
         return View(model);

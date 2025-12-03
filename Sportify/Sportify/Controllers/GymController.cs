@@ -1,33 +1,43 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sportify.Data;
 using Sportify.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Sportify.Controllers
 {
     public class GymController : Controller
     {
         public ApplicationDbContext _context;
-        public GymController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public GymController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
         }
 
         //CREATE
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [HttpGet]
         public IActionResult CreateGym()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> CreateGym(Gym model)
         {
-
+            ModelState.Remove(nameof(model.Name));
+            ModelState.Remove(nameof(model.Trainers));
+            ModelState.Remove(nameof(model.Services));
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -49,7 +59,17 @@ namespace Sportify.Controllers
                 return View(model);
             }
 
-            _context.Salonlar.Add(model);
+            var currentUser = await _userManager.GetUserAsync(User);
+            var userName = currentUser.FullName;
+
+            var gym = new Gym
+            {
+                Name = userName,
+                GymName = model.GymName,
+                OpenTime = model.OpenTime,
+                CloseTime = model.CloseTime
+            };
+            _context.Salonlar.Add(gym);
 
             await _context.SaveChangesAsync();
 
@@ -62,7 +82,7 @@ namespace Sportify.Controllers
         [HttpGet]
         public async Task<IActionResult> ListGym()
         {
-            var gymList = await _context.Salonlar.ToListAsync();
+            var gymList = await _context.Salonlar.Include(x=>x.Trainers).Include(x=>x.Services).ToListAsync();
             return View(gymList);
         }
 
@@ -116,36 +136,44 @@ namespace Sportify.Controllers
         //DELETE
 
         [Authorize]
-        [HttpGet]
         public async Task<IActionResult> DeleteGym(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
-            var gym = await _context.Salonlar.FirstOrDefaultAsync(m => m.GymId == id);
+            var gym = await _context.Salonlar
+                .FirstOrDefaultAsync(m => m.GymId == id);
+
             if (gym == null)
-            {
                 return NotFound();
-            }
 
             return View(gym);
         }
 
         [Authorize]
-        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var gym = await _context.Salonlar.FindAsync(id);
-            if (gym != null)
-            {
-                _context.Salonlar.Remove(gym);
-                await _context.SaveChangesAsync();
-            }
+            var gym = await _context.Salonlar
+                .Include(x => x.Trainers)
+                .Include(x => x.Services)
+                .FirstOrDefaultAsync(x => x.GymId == id);
+
+            if (gym == null)
+                return NotFound();
+
+            if (gym.Trainers != null && gym.Trainers.Count > 0)
+                _context.Egitmenler.RemoveRange(gym.Trainers);
+
+            if (gym.Services != null && gym.Services.Count > 0)
+                _context.Servisler.RemoveRange(gym.Services);
+
+            _context.Salonlar.Remove(gym);
+            await _context.SaveChangesAsync();
+
             return RedirectToAction("Index", "Home");
         }
+
 
         private bool GymExists(int id)
         {

@@ -15,6 +15,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <input type="hidden" asp-for="TrainerId" />
+            <input type="hidden" asp-for="service" />
+            <input type="hidden" asp-for="gym" />
 
             <div class="form-group">
                 <label asp-for="TrainerName"></label>
@@ -34,23 +36,6 @@
                 <span asp-validation-for="WorkEndTime" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="ServiceName"></label>
-                <input asp-for="ServiceName" class="form-control" />
-                <span asp-validation-for="ServiceName" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="ServiceTime"></label>
-                <input asp-for="ServiceTime" type="number" class="form-control" />
-                <span asp-validation-for="ServiceTime" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="ServicePrice"></label>
-                <input asp-for="ServicePrice" type="number" class="form-control" />
-                <span asp-validation-for="ServicePrice" class="text-danger"></span>
-            </div>
 
             <div class="form-group">
                 <label asp-for="GymId"></label>

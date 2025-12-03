@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sportify.Data;
 using Sportify.Models;
+using Sportify.ViewModels;
 
 [Authorize(Roles = "User")]
 public class ProfileController : Controller
@@ -27,27 +28,31 @@ public class ProfileController : Controller
 
         var userFullName = currentUser.FullName;
 
-        var userAppointments = await (from appointment in _context.Randevular
-                                      join trainer in _context.Egitmenler
-                                      on appointment.TrainerId equals trainer.TrainerId
-                                      where appointment.UserName == userFullName
-                                      select new AppointmentDetailViewModel
-                                      {
-                                          AppointmentId = appointment.AppointmentId,
-                                          UserName = appointment.UserName,
-                                          TrainerName = trainer.TrainerName,
-                                          ServiceName = trainer.ServiceName,
-                                          ServiceTime = trainer.ServiceTime
-                                      }).ToListAsync();
+        var userAppointments = await _context.Randevular
+            .Include(x=>x.trainer)
+            .Include(x=>x.service)
+            .Include(x=>x.gym)
+                                          .Where(t => t.UserName == userFullName)
+                                          .ToListAsync();
 
         var userTrainings = await _context.Egitmenler
                                           .Where(t => t.TrainerName == userFullName)
                                           .ToListAsync();
 
+        var userGyms = await _context.Salonlar
+                                        .Where(t => t.Name == userFullName)
+                                        .ToListAsync();
+
+        var userServices = await _context.Servisler
+                                        .Where(t => t.UserName == userFullName)
+                                        .ToListAsync();
+
         var viewModel = new ProfileViewModel
         {
             MyAppointments = userAppointments,
-            MyTrainings = userTrainings
+            MyTrainings = userTrainings,
+            MyGyms = userGyms,
+            MyServices = userServices
         };
 
         return View(viewModel);

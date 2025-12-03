@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Sportify.Models;
+using Sportify.ViewModels;
 using System.Diagnostics;
 
 namespace Sportify.Controllers

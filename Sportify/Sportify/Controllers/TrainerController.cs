@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sportify.Data;
 using Sportify.Models;
+using Sportify.ViewModels;
 
 namespace Sportify.Controllers
 {
@@ -20,15 +21,15 @@ namespace Sportify.Controllers
 
         //CREATE
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [HttpGet]
         public async Task<IActionResult> CreateTrainer()
         {
-            var currentUser = await _userManager.GetUserAsync(User);
-            var userName = currentUser.FullName;
-
             var salonlar = await _context.Salonlar.ToListAsync();
             ViewBag.Salonlar = new SelectList(salonlar, "GymId", "GymName");
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            var userName = currentUser.FullName;
 
             var model = new Trainer
             {
@@ -38,15 +39,28 @@ namespace Sportify.Controllers
             return View(model);
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> CreateTrainer(Trainer model)
         {
-            async Task ReloadViewBag()
+            async Task ReloadViewBag(int? selectedGymId = null)
             {
                 var salonlar = await _context.Salonlar.ToListAsync();
-                ViewBag.Salonlar = new SelectList(salonlar, "GymId", "GymName");
+                ViewBag.Salonlar = new SelectList(salonlar, "GymId", "GymName", selectedGymId);
             }
+
+            bool exists = await _context.Egitmenler.AnyAsync(x =>x.TrainerName.ToLower() == model.TrainerName.ToLower());
+
+
+            if (exists)
+            {
+                ModelState.AddModelError("GymId", "Bu kullanıcı zaten bir eğitmen!");
+                return View(model);
+            }
+
+            ModelState.Remove(nameof(model.service));
+            ModelState.Remove(nameof(model.gym));
+            ModelState.Remove(nameof(model.GymId));
 
             if (!ModelState.IsValid)
             {
@@ -64,7 +78,6 @@ namespace Sportify.Controllers
                 return View(model);
             }
 
-
             if (model.WorkStartTime < selectedGym.OpenTime || model.WorkEndTime > selectedGym.CloseTime)
             {
                 ModelState.AddModelError(string.Empty,
@@ -81,16 +94,13 @@ namespace Sportify.Controllers
                 return View(model);
             }
 
-
             var trainer = new Trainer
             {
                 TrainerName = model.TrainerName,
-                WorkStartTime = model.WorkStartTime,
                 WorkEndTime = model.WorkEndTime,
-                ServiceName = model.ServiceName,
-                ServiceTime = model.ServiceTime,
-                ServicePrice = model.ServicePrice,
-                GymId = model.GymId
+                WorkStartTime = model.WorkStartTime,
+                GymId = selectedGym.GymId,
+                gym = selectedGym
             };
 
             _context.Egitmenler.Add(trainer);
@@ -105,7 +115,7 @@ namespace Sportify.Controllers
         [HttpGet]
         public async Task<IActionResult> ListTrainer()
         {
-            var trainers = await _context.Egitmenler.ToListAsync();
+            var trainers = await _context.Egitmenler.Include(x=>x.gym).Include(x=>x.service).ToListAsync();
             return View(trainers);
         }
 
@@ -128,6 +138,9 @@ namespace Sportify.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditTrainer(Trainer model)
         {
+            ModelState.Remove(nameof(model.service));
+            ModelState.Remove(nameof(model.gym));
+            ModelState.Remove(nameof(model.GymId));
             if (ModelState.IsValid)
             {
                 try
@@ -153,26 +166,46 @@ namespace Sportify.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteTrainer(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+                return NotFound();
 
-            var trainer = await _context.Egitmenler.FirstOrDefaultAsync(m => m.TrainerId == id);
+            var trainer = await _context.Egitmenler
+                .FirstOrDefaultAsync(m => m.TrainerId == id);
 
-            if (trainer == null) return NotFound();
+            if (trainer == null)
+                return NotFound();
 
             return View(trainer);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var trainer = await _context.Egitmenler.FindAsync(id);
-            if (trainer != null)
+            var trainer = await _context.Egitmenler
+                .Include(x => x.service)
+                .FirstOrDefaultAsync(x => x.TrainerId == id);
+
+            if (trainer == null)
+                return NotFound();
+
+            var relatedAppointments = await _context.Randevular
+                .Where(a => a.TrainerId == id) 
+                .ToListAsync();
+
+            if (relatedAppointments != null && relatedAppointments.Count > 0)
             {
-                _context.Egitmenler.Remove(trainer);
-                await _context.SaveChangesAsync();
+                _context.Randevular.RemoveRange(relatedAppointments);
             }
+
+            if (trainer.service != null && trainer.service.Count > 0)
+            {
+                _context.Servisler.RemoveRange(trainer.service);
+            }
+
+            _context.Egitmenler.Remove(trainer);
+            await _context.SaveChangesAsync();
+
             return RedirectToAction("Index", "Home");
         }
 
