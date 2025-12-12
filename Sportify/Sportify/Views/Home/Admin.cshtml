@@ -2,6 +2,144 @@
     ViewData["Title"] = "Admin Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Admin page</h1>
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">Admin Dashboard</h2>
+            <p class="text-muted">Overview of gym performance and logs.</p>
+        </div>
+        <button class="btn btn-outline-success rounded-pill">Export Report</button>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card-custom p-3 d-flex flex-row align-items-center">
+                <div class="bg-primary bg-opacity-10 text-primary p-3 rounded me-3"><i class="fas fa-users fa-lg"></i></div>
+                <div>
+                    <small class="text-muted fw-bold">TOTAL MEMBERS</small>
+                    <h4 class="fw-bold mb-0">1,245</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-custom p-3 d-flex flex-row align-items-center">
+                <div class="bg-success bg-opacity-10 text-success p-3 rounded me-3"><i class="fas fa-dollar-sign fa-lg"></i></div>
+                <div>
+                    <small class="text-muted fw-bold">MONTHLY REVENUE</small>
+                    <h4 class="fw-bold mb-0">$24,500</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-custom p-3 d-flex flex-row align-items-center">
+                <div class="bg-danger bg-opacity-10 text-danger p-3 rounded me-3"><i class="fas fa-dumbbell fa-lg"></i></div>
+                <div>
+                    <small class="text-muted fw-bold">ACTIVE TRAINERS</small>
+                    <h4 class="fw-bold mb-0">12</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card-custom p-3 d-flex flex-row align-items-center">
+                <div class="bg-warning bg-opacity-10 text-warning p-3 rounded me-3"><i class="fas fa-clock fa-lg"></i></div>
+                <div>
+                    <small class="text-muted fw-bold">PENDING BOOKINGS</small>
+                    <h4 class="fw-bold mb-0">5</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-6">
+            <div class="card-custom h-100">
+                <h5 class="fw-bold mb-4">Revenue Growth</h5>
+                <canvas id="revenueChart" height="200"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-custom h-100">
+                <h5 class="fw-bold mb-4">New vs Active Members</h5>
+                <canvas id="memberChart" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-custom">
+        <h5 class="fw-bold mb-3">Recent Appointments</h5>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead class="text-muted small text-uppercase">
+                    <tr>
+                        <th>Member</th>
+                        <th>Trainer</th>
+                        <th>Service</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>User 1</td>
+                        <td>John Spartan</td>
+                        <td>Bodybuilding</td>
+                        <td><span class="badge bg-success bg-opacity-10 text-success">Confirmed</span></td>
+                    </tr>
+                    <tr>
+                        <td>User 2</td>
+                        <td>John Spartan</td>
+                        <td>Bodybuilding</td>
+                        <td><span class="badge bg-success bg-opacity-10 text-success">Confirmed</span></td>
+                    </tr>
+                    <tr>
+                        <td>User 3</td>
+                        <td>John Spartan</td>
+                        <td>Bodybuilding</td>
+                        <td><span class="badge bg-success bg-opacity-10 text-success">Confirmed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Revenue Chart (Area)
+        const ctx1 = document.getElementById('revenueChart').getContext('2d');
+        const gradient = ctx1.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(0, 200, 83, 0.5)');
+        gradient.addColorStop(1, 'rgba(0, 200, 83, 0.0)');
+
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [4000, 3000, 5000, 4500, 6000, 7000],
+                    backgroundColor: gradient,
+                    borderColor: '#00c853',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+        });
+
+        // Members Chart (Bar)
+        const ctx2 = document.getElementById('memberChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [
+                    { label: 'Active', data: [150, 160, 190, 210, 250, 300], backgroundColor: '#00c853' },
+                    { label: 'New', data: [30, 25, 40, 35, 50, 60], backgroundColor: '#2979ff' }
+                ]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
+    });
+</script>

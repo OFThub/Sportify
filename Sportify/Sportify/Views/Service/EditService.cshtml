@@ -1,43 +1,104 @@
 ﻿@model Sportify.Models.Service
 
 @{
-    ViewData["Title"] = "EditService";
+    ViewData["Title"] = "Servisi Düzenle";
 }
 
-<h1>EditService</h1>
+<style>
+    .form-container {
+        background: white;
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        max-width: 600px;
+        margin: 2rem auto;
+    }
 
-<h4>Service</h4>
-<hr />
+    .form-header h1 {
+        color: #1f2937;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    .control-label {
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 12px 15px;
+        width: 100%;
+    }
+
+        .form-control:focus {
+            border-color: #3b82f6; /* Edit için Mavi odak */
+            outline: none;
+        }
+
+    .btn-save {
+        background-color: #2563eb; /* Mavi Buton */
+        color: white;
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: none;
+        margin-top: 1rem;
+    }
+
+        .btn-save:hover {
+            background-color: #1d4ed8;
+        }
+</style>
+
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="EditService">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ServiceId" />
-            <input type="hidden" asp-for="UserName" />
-            <div class="form-group">
-                <label asp-for="ServiceName" class="control-label"></label>
-                <input asp-for="ServiceName" class="form-control" />
-                <span asp-validation-for="ServiceName" class="text-danger"></span>
+    <div class="col-12">
+        <div class="form-container">
+            <div class="form-header mb-4">
+                <h1>Hizmeti Düzenle</h1>
+                <p class="text-center text-muted">@Model.ServiceName detaylarını güncelliyorsunuz.</p>
             </div>
-            <div class="form-group">
-                <label asp-for="ServiceTime" class="control-label"></label>
-                <input asp-for="ServiceTime" class="form-control" />
-                <span asp-validation-for="ServiceTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ServicePrice" class="control-label"></label>
-                <input asp-for="ServicePrice" class="form-control" />
-                <span asp-validation-for="ServicePrice" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="GymId" />
-            <input type="hidden" asp-for="TrainerId" />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+            <form asp-action="EditService">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ServiceId" />
+                <input type="hidden" asp-for="UserName" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="ServiceName" class="control-label"></label>
+                    <input asp-for="ServiceName" class="form-control" />
+                    <span asp-validation-for="ServiceName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="ServiceTime" class="control-label"></label>
+                    <input asp-for="ServiceTime" class="form-control" />
+                    <span asp-validation-for="ServiceTime" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="ServicePrice" class="control-label"></label>
+                    <input asp-for="ServicePrice" class="form-control" />
+                    <span asp-validation-for="ServicePrice" class="text-danger"></span>
+                </div>
+
+                <input type="hidden" asp-for="GymId" />
+                <input type="hidden" asp-for="TrainerId" />
+
+                <div class="form-group">
+                    <input type="submit" value="Değişiklikleri Kaydet" class="btn btn-save" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

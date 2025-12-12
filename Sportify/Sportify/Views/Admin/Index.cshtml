@@ -2,59 +2,168 @@
     ViewData["Title"] = "Yönetici Paneli";
 }
 
-<h1><i class="fas fa-tools"></i> Yönetici Paneli Ana Sayfası</h1>
-<p class="lead">Lütfen yapmak istediğiniz yönetim işlemini seçin.</p>
+<style>
+    :root {
+        --primary-green: #10b981;
+        --dark-navy: #1f2937;
+        --card-bg: #ffffff;
+        --bg-gray: #f3f4f6;
+    }
 
-<hr />
+    body {
+        background-color: var(--bg-gray);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
 
-<div class="row">
+    .admin-header {
+        margin-bottom: 2rem;
+    }
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white">Spor Salonları</div>
-            <div class="card-body">
-                <p class="card-text">Sistemdeki spor salonlarını yönetin.</p>
-                <a asp-controller="Gym" asp-action="ListGym" class="btn btn-primary btn-block">
-                    Salon Yönetimine Git
-                </a>
-            </div>
-        </div>
+    .admin-header h1 {
+        font-weight: 700;
+        color: var(--dark-navy);
+        font-size: 2rem;
+    }
+
+    .admin-header p {
+        color: #6b7280;
+    }
+
+    .dashboard-card {
+        background: var(--card-bg);
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s, box-shadow 0.2s;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header-custom {
+        padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        background: transparent;
+        border: none;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-text {
+        color: #6b7280;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .btn-dashboard {
+        border-radius: 12px;
+        padding: 10px 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.85rem;
+        border: none;
+        width: 100%;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    /* Renk Temaları - Görsellerdeki Pastel Tonlar */
+    .theme-blue .card-header-custom { color: #3b82f6; }
+    .theme-blue .btn-dashboard { background-color: #eff6ff; color: #3b82f6; }
+    .theme-blue .btn-dashboard:hover { background-color: #3b82f6; color: white; }
+
+    .theme-green .card-header-custom { color: #10b981; }
+    .theme-green .btn-dashboard { background-color: #ecfdf5; color: #10b981; }
+    .theme-green .btn-dashboard:hover { background-color: #10b981; color: white; }
+
+    .theme-purple .card-header-custom { color: #8b5cf6; }
+    .theme-purple .btn-dashboard { background-color: #f5f3ff; color: #8b5cf6; }
+    .theme-purple .btn-dashboard:hover { background-color: #8b5cf6; color: white; }
+
+    .theme-orange .card-header-custom { color: #f59e0b; }
+    .theme-orange .btn-dashboard { background-color: #fffbeb; color: #f59e0b; }
+    .theme-orange .btn-dashboard:hover { background-color: #f59e0b; color: white; }
+</style>
+
+<div class="container py-5">
+    <div class="admin-header">
+        <h1><i class="fas fa-chart-line" style="color: #10b981; margin-right: 10px;"></i> Admin Dashboard</h1>
+        <p class="lead">Spor salonu performansına ve yönetim araçlarına genel bakış.</p>
     </div>
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <div class="card-header bg-success text-white">Antrenörler</div>
-            <div class="card-body">
-                <p class="card-text">Sistemdeki eğitmenleri yönetin ve detaylarını güncelleyin.</p>
-                <a asp-controller="Trainer" asp-action="ListTrainer" class="btn btn-success btn-block">
-                    Eğitmen Yönetimine Git
-                </a>
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+            <div class="dashboard-card theme-blue">
+                <div class="card-header-custom">
+                    <i class="fas fa-building mb-2" style="font-size: 1.5rem;"></i><br>
+                    Spor Salonları
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Sistemdeki tüm şubeleri ve salon detaylarını yönetin.</p>
+                    <a asp-controller="Gym" asp-action="ListGym" class="btn-dashboard">
+                        Yönet
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <div class="card-header bg-success text-white">Hizmetler</div>
-            <div class="card-body">
-                <p class="card-text">Sistemdeki hizmetleri yönetin ve detaylarını güncelleyin.</p>
-                <a asp-controller="Service" asp-action="ListService" class="btn btn-success btn-block">
-                    Servis Yönetimine Git
-                </a>
+        <div class="col-md-3 mb-4">
+            <div class="dashboard-card theme-green">
+                <div class="card-header-custom">
+                    <i class="fas fa-user-ninja mb-2" style="font-size: 1.5rem;"></i><br>
+                    Antrenörler
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Eğitmen kadrosunu ve uzmanlık alanlarını düzenleyin.</p>
+                    <a asp-controller="Trainer" asp-action="ListTrainer" class="btn-dashboard">
+                        Yönet
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <div class="card-header bg-info text-white">Randevu Yönetimi</div>
-            <div class="card-body">
-                <p class="card-text">Tüm üye randevularını görüntüleyin, onaylayın veya iptal edin.</p>
-                <a asp-controller="Appointment" asp-action="ListAppointment" class="btn btn-info btn-block">
-                    Randevu Yönetimine Git
-                </a>
+        <div class="col-md-3 mb-4">
+            <div class="dashboard-card theme-purple">
+                <div class="card-header-custom">
+                    <i class="fas fa-dumbbell mb-2" style="font-size: 1.5rem;"></i><br>
+                    Hizmetler
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Ders paketlerini, fiyatları ve süreleri güncelleyin.</p>
+                    <a asp-controller="Service" asp-action="ListService" class="btn-dashboard">
+                        Yönet
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="col-md-3 mb-4">
+            <div class="dashboard-card theme-orange">
+                <div class="card-header-custom">
+                    <i class="fas fa-calendar-check mb-2" style="font-size: 1.5rem;"></i><br>
+                    Randevular
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Üye rezervasyonlarını onaylayın veya iptal edin.</p>
+                    <a asp-controller="Appointment" asp-action="ListAppointment" class="btn-dashboard">
+                        Yönet
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

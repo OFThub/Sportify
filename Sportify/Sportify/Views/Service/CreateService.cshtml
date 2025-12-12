@@ -1,39 +1,121 @@
 ﻿@model Sportify.Models.Service
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Yeni Servis Oluştur";
 }
 
-<h1>View</h1>
+<style>
+    .form-container {
+        background: white;
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        max-width: 600px;
+        margin: 2rem auto;
+    }
 
-<h4>Service</h4>
-<hr />
+    .form-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+        .form-header h1 {
+            color: #1f2937;
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
+
+        .form-header p {
+            color: #6b7280;
+        }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .control-label {
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        display: block;
+        font-size: 0.95rem;
+    }
+
+    .form-control {
+        border: 2px solid #f3f4f6;
+        background-color: #f9fafb;
+        border-radius: 12px;
+        padding: 12px 15px;
+        transition: all 0.3s;
+        width: 100%;
+        box-sizing: border-box; /* Input taşmasını önler */
+    }
+
+        .form-control:focus {
+            background-color: #fff;
+            border-color: #10b981; /* Sportify Yeşil */
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            outline: none;
+        }
+
+    .btn-sportify {
+        background-color: #10b981;
+        color: white;
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 1rem;
+    }
+
+        .btn-sportify:hover {
+            background-color: #059669;
+        }
+</style>
+
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateService">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ServiceName" class="control-label"></label>
-                <input asp-for="ServiceName" class="form-control" />
-                <span asp-validation-for="ServiceName" class="text-danger"></span>
+    <div class="col-12">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Yeni Servis Ekle</h1>
+                <p>Üyelerinize sunmak için yeni bir hizmet oluşturun.</p>
             </div>
-            <div class="form-group">
-                <label asp-for="ServiceTime" class="control-label"></label>
-                <input asp-for="ServiceTime" class="form-control" />
-                <span asp-validation-for="ServiceTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ServicePrice" class="control-label"></label>
-                <input asp-for="ServicePrice" class="form-control" />
-                <span asp-validation-for="ServicePrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+            <form asp-action="CreateService">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="ServiceName" class="control-label">Servis Adı</label>
+                    <input asp-for="ServiceName" class="form-control" placeholder="Örn: Yoga Masterclass" />
+                    <span asp-validation-for="ServiceName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ServiceTime" class="control-label">Süre (Dakika)</label>
+                    <input asp-for="ServiceTime" class="form-control" placeholder="Örn: 60" />
+                    <span asp-validation-for="ServiceTime" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ServicePrice" class="control-label">Ücret (TL)</label>
+                    <input asp-for="ServicePrice" class="form-control" placeholder="Örn: 500" />
+                    <span asp-validation-for="ServicePrice" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Servisi Oluştur ⚡" class="btn btn-sportify" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

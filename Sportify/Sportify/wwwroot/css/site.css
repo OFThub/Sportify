@@ -1,31 +1,72 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+/* Sportify Tema Renkleri */
+:root {
+    --primary-green: #00c853; /* Sportify Yeşili */
+    --primary-dark: #1b5e20;
+    --dark-bg: #0a192f;
+    --light-bg: #f8f9fa;
+    --card-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg);
+    color: #333;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Navbar */
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary-green) !important;
+    font-size: 1.5rem;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.btn-sportify {
+    background-color: var(--primary-green);
+    color: white;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-weight: 600;
+    border: none;
+    transition: 0.3s;
+}
+
+    .btn-sportify:hover {
+        background-color: var(--primary-dark);
+        color: white;
+    }
+
+/* Kartlar */
+.card-custom {
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s;
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+    .card-custom:hover {
+        transform: translateY(-5px);
+    }
+
+/* Landing Page Hero */
+.hero-section {
+    background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.9)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+/* Dashboard Banner */
+.welcome-banner {
+    background: linear-gradient(135deg, #00c853 0%, #009624 100%);
+    color: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
 }

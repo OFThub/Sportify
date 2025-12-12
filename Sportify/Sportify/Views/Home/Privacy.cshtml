@@ -1,6 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+    .policy-container {
+        background: white;
+        padding: 3rem;
+        border-radius: 16px;
+        border: 1px solid #e5e7eb;
+        max-width: 800px;
+        margin: 2rem auto;
+    }
+
+    .policy-header {
+        border-bottom: 2px solid #10b981;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        display: inline-block;
+    }
+</style>
+
+<div class="policy-container">
+    <h1 class="policy-header">@ViewData["Title"]</h1>
+    <p class="lead">Use this page to detail your site's privacy policy.</p>
+    <p class="text-muted">
+        Your privacy is important to us. It is Sportify's policy to respect your privacy regarding any information we may collect from you across our website.
+    </p>
+</div>
