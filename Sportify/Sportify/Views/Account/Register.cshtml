@@ -1,43 +1,135 @@
-﻿﻿@using Sportify.ViewModels;
+﻿@using Sportify.ViewModels;
 @model Register;
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Kayıt Ol";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
+<style>
+    /* Login.cshtml'deki ile aynı stiller, sadece başlık ve renkler biraz farklı */
+    :root {
+        --primary-green: #10b981;
+        --dark-navy: #1f2937;
+        --bg-gray: #f3f4f6;
+    }
+
+    .account-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--bg-gray);
+        padding: 20px;
+    }
+
+    .account-box {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 420px;
+        border-top: 5px solid #2563eb; /* Kayıt için farklı bir renk (Mavi) */
+    }
+
+        .account-box h2 {
+            font-weight: 800;
+            color: var(--dark-navy);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+    .form-label {
+        font-weight: 600;
+        color: #4b5563;
+        margin-bottom: 0.3rem;
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 12px 15px;
+        transition: all 0.3s;
+        width: 100%;
+        box-shadow: none;
+    }
+
+        .form-control:focus {
+            border-color: #2563eb; /* Mavi odak */
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            outline: none;
+        }
+
+    .btn-sportify {
+        background-color: var(--primary-green);
+        color: white;
+        padding: 15px 0;
+        border-radius: 12px;
+        font-weight: 700;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 1rem;
+    }
+
+        .btn-sportify:hover {
+            background-color: #059669;
+        }
+
+    .text-center a {
+        color: var(--primary-green);
+        font-weight: 600;
+        transition: color 0.2s;
+    }
+
+        .text-center a:hover {
+            color: #059669;
+        }
+</style>
+
 <div class="account-container">
     <div class="account-box">
-        <h2 class="text-center mb-4">Register</h2>
+        <h2 class="text-center mb-4"><i class="fas fa-user-plus" style="color: #2563eb; margin-right: 10px;"></i> Yeni Üyelik</h2>
+        <p class="text-center text-muted mb-4" style="font-size:0.9rem;">Sana özel antrenmanlara hemen başlamak için kayıt ol.</p>
+
         <form asp-action="Register" method="post">
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="mb-3">
-                <label asp-for="Name" class="form-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name" class="form-label">Ad Soyad</label>
+                <input asp-for="Name" class="form-control" placeholder="Adın ve Soyadın" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
-                <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email" class="form-label">E-posta</label>
+                <input asp-for="Email" class="form-control" placeholder="E-posta adresin" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
-                <label asp-for="Password" class="form-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <label asp-for="Password" class="form-label">Şifre</label>
+                <input asp-for="Password" class="form-control" placeholder="En az 6 karakter" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
-                <label asp-for="ConfirmPassword" class="form-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
+                <label asp-for="ConfirmPassword" class="form-label">Şifre Tekrar</label>
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="Şifreni tekrar gir" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <input type="submit" value="Register" class="btn btn-success w-100 p-2" />
-            <p class="text-center mt-2">
-                Already have an account? <a asp-controller="Account" asp-action="Login" class="text-decoration-none">Login</a>
+
+            <input type="submit" value="Hemen Kayıt Ol" class="btn btn-sportify w-100 p-2" />
+
+            <p class="text-center mt-4 mb-0" style="font-size:0.9rem;">
+                Zaten bir hesabın var mı? <a asp-controller="Account" asp-action="Login">Giriş Yap</a>
             </p>
-            <div class="text-center">
-                <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3">Back</a>
+            <div class="text-center mt-3">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3" style="color: #6b7280; font-weight: 500;">Ana Sayfaya Dön</a>
             </div>
         </form>
     </div>
