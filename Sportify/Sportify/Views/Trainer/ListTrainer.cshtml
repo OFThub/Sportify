@@ -1,53 +1,226 @@
 ﻿@model List<Sportify.Models.Trainer>
 
-@if (Model == null || !Model.Any())
-{
-    <div class="alert alert-info">Henüz oluşturulmuş bir randevu bulunmamaktadır.</div>
+@{
+    ViewData["Title"] = "Eğitmen Listesi";
 }
 
-else
-{
-    <div class="trainer-list-container">
-        @foreach (var trainer in Model)
-        {
-            <div class="trainer-card">
+<style>
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        margin-top: 2rem;
+    }
 
-                <h2>@trainer.TrainerName</h2>
-                <p><strong>Çalışma Saatleri:</strong> @trainer.WorkStartTime - @trainer.WorkEndTime</p>
-                <p><strong>Çalıştığı Salon:</strong> @trainer.gym.GymName</p>
-                @if(trainer.service!=null && trainer.service.Any())
-                {
-                    foreach(var item in trainer.service)
-                    {
-                        <span>@item.ServiceName</span>
-                        <span>@item.ServicePrice TL</span>
-                        <span>@item.ServiceTime dk</span>
-                        <br />
-                    }
-                }
-                else
-                {
-                    <span>Hizmet bulunmamaktadır.</span>
-                }
-
-                <hr />
-
-                <div class="trainer-actions">
-
-                    <a asp-controller="Trainer"
-                       asp-action="EditTrainer"
-                       asp-route-id="@trainer.TrainerId">
-                        Düzenle
-                    </a>
-
-                    <a asp-controller="Trainer"
-                       asp-action="DeleteTrainer"
-                       asp-route-id="@trainer.TrainerId">
-                        Sil
-                    </a>
-
-                </div>
-            </div>
+        .page-header h1 {
+            font-weight: 800;
+            color: #1f2937;
         }
+
+    .trainer-list-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .trainer-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .trainer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: #10b981;
+        }
+
+    .card-top-bar {
+        height: 8px;
+        background: linear-gradient(90deg, #10b981, #3b82f6);
+        width: 100%;
+    }
+
+    .card-content {
+        padding: 2rem;
+        flex-grow: 1;
+    }
+
+    .trainer-avatar {
+        width: 80px;
+        height: 80px;
+        background-color: #ecfdf5;
+        color: #10b981;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .trainer-card h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.8rem;
+        color: #6b7280;
+        font-size: 0.95rem;
+    }
+
+        .info-row i {
+            width: 24px;
+            color: #10b981;
+        }
+
+    .services-container {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .service-badge {
+        display: inline-block;
+        background-color: #eff6ff;
+        color: #2563eb;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 50px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        border: 1px solid #dbeafe;
+    }
+
+    .trainer-actions {
+        padding: 1.5rem;
+        background-color: #f9fafb;
+        border-top: 1px solid #f3f4f6;
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-edit {
+        flex: 1;
+        background-color: white;
+        border: 1px solid #d1d5db;
+        color: #374151;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.2s;
+        font-size: 0.9rem;
+    }
+
+        .btn-edit:hover {
+            background-color: #f3f4f6;
+            border-color: #9ca3af;
+            color: #1f2937;
+        }
+
+    .btn-delete {
+        flex: 1;
+        background-color: #fee2e2;
+        color: #b91c1c;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.2s;
+        font-size: 0.9rem;
+    }
+
+        .btn-delete:hover {
+            background-color: #fecaca;
+        }
+</style>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Expert Trainers</h1>
+        <p class="text-muted">Profesyonel eğitmen kadromuzu yönetin.</p>
     </div>
-}
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info text-center p-4 rounded-3 shadow-sm">
+            <i class="fas fa-info-circle me-2"></i> Henüz oluşturulmuş bir eğitmen bulunmamaktadır.
+        </div>
+    }
+    else
+    {
+        <div class="trainer-list-container">
+            @foreach (var trainer in Model)
+            {
+                <div class="trainer-card">
+                    <div class="card-top-bar"></div>
+                    <div class="card-content">
+                        <div class="trainer-avatar">
+                            <i class="fas fa-user-ninja"></i>
+                        </div>
+
+                        <h2>@trainer.TrainerName</h2>
+
+                        <div class="info-row">
+                            <i class="far fa-clock"></i>
+                            <span>@trainer.WorkStartTime - @trainer.WorkEndTime</span>
+                        </div>
+
+                        <div class="info-row">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>@trainer.gym.GymName</span>
+                        </div>
+
+                        <div class="services-container">
+                            <h6 style="font-size: 0.8rem; text-transform:uppercase; color:#9ca3af; font-weight:700; margin-bottom:0.5rem;">Verdiği Hizmetler</h6>
+                            @if (trainer.service != null && trainer.service.Any())
+                            {
+                                @foreach (var item in trainer.service)
+                                {
+                                    <span class="service-badge">
+                                        @item.ServiceName
+                                        <span style="opacity:0.7; font-weight:400;">(@item.ServicePrice TL)</span>
+                                    </span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-muted small">Hizmet bulunmamaktadır.</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="trainer-actions">
+                        <a asp-controller="Trainer"
+                           asp-action="EditTrainer"
+                           asp-route-id="@trainer.TrainerId"
+                           class="btn-edit">
+                            <i class="fas fa-edit me-1"></i> Düzenle
+                        </a>
+
+                        <a asp-controller="Trainer"
+                           asp-action="DeleteTrainer"
+                           asp-route-id="@trainer.TrainerId"
+                           class="btn-delete">
+                            <i class="fas fa-trash-alt me-1"></i> Sil
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

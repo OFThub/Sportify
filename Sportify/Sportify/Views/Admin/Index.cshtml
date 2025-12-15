@@ -5,9 +5,10 @@
 <style>
     :root {
         --primary-green: #10b981;
+        --dark-green: #047857;
         --dark-navy: #1f2937;
         --card-bg: #ffffff;
-        --bg-gray: #f3f4f6;
+        --bg-gray: #f9fafb;
     }
 
     body {
@@ -15,153 +16,204 @@
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
 
-    .admin-header {
-        margin-bottom: 2rem;
-    }
-
-    .admin-header h1 {
-        font-weight: 700;
-        color: var(--dark-navy);
-        font-size: 2rem;
-    }
-
-    .admin-header p {
-        color: #6b7280;
-    }
-
-    .dashboard-card {
-        background: var(--card-bg);
-        border: none;
-        border-radius: 16px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        transition: transform 0.2s, box-shadow 0.2s;
-        height: 100%;
+    /* Karşılama Banner'ı */
+    .welcome-banner {
+        background: linear-gradient(135deg, #10b981 0%, #065f46 100%);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 24px;
+        margin-bottom: 3rem;
+        box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.15), 0 10px 10px -5px rgba(16, 185, 129, 0.1);
+        position: relative;
         overflow: hidden;
     }
 
-    .dashboard-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
+        .welcome-banner::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
 
-    .card-header-custom {
-        padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-        font-weight: 600;
-        font-size: 1.1rem;
-        background: transparent;
-        border: none;
-    }
+        .welcome-banner h1 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
 
-    .card-body {
-        padding: 1.5rem;
+        .welcome-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+            max-width: 600px;
+        }
+
+    /* Kart Yapısı */
+    .dashboard-card {
+        background: var(--card-bg);
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: 20px;
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+    /* İkon Kutuları */
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s;
+    }
+
+    .dashboard-card:hover .icon-box {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .card-title {
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: var(--dark-navy);
+        margin-bottom: 0.75rem;
     }
 
     .card-text {
         color: #6b7280;
-        margin-bottom: 1.5rem;
         font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 2rem;
+        flex-grow: 1;
     }
 
-    .btn-dashboard {
-        border-radius: 12px;
-        padding: 10px 20px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-size: 0.85rem;
-        border: none;
+    /* Buton */
+    .btn-action {
         width: 100%;
-        display: block;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 600;
         text-align: center;
         text-decoration: none;
+        transition: all 0.2s;
+        border: 2px solid transparent;
+        background-color: #f3f4f6;
+        color: var(--dark-navy);
     }
 
-    /* Renk Temaları - Görsellerdeki Pastel Tonlar */
-    .theme-blue .card-header-custom { color: #3b82f6; }
-    .theme-blue .btn-dashboard { background-color: #eff6ff; color: #3b82f6; }
-    .theme-blue .btn-dashboard:hover { background-color: #3b82f6; color: white; }
+        .btn-action:hover {
+            background-color: var(--primary-green);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
 
-    .theme-green .card-header-custom { color: #10b981; }
-    .theme-green .btn-dashboard { background-color: #ecfdf5; color: #10b981; }
-    .theme-green .btn-dashboard:hover { background-color: #10b981; color: white; }
+    /* Tema Renkleri (İkon Kutuları İçin) */
+    .theme-blue .icon-box {
+        background-color: #eff6ff;
+        color: #3b82f6;
+    }
 
-    .theme-purple .card-header-custom { color: #8b5cf6; }
-    .theme-purple .btn-dashboard { background-color: #f5f3ff; color: #8b5cf6; }
-    .theme-purple .btn-dashboard:hover { background-color: #8b5cf6; color: white; }
+    .theme-green .icon-box {
+        background-color: #ecfdf5;
+        color: #10b981;
+    }
 
-    .theme-orange .card-header-custom { color: #f59e0b; }
-    .theme-orange .btn-dashboard { background-color: #fffbeb; color: #f59e0b; }
-    .theme-orange .btn-dashboard:hover { background-color: #f59e0b; color: white; }
+    .theme-purple .icon-box {
+        background-color: #f5f3ff;
+        color: #8b5cf6;
+    }
+
+    .theme-orange .icon-box {
+        background-color: #fffbeb;
+        color: #f59e0b;
+    }
+
 </style>
 
-<div class="container py-5">
-    <div class="admin-header">
-        <h1><i class="fas fa-chart-line" style="color: #10b981; margin-right: 10px;"></i> Admin Dashboard</h1>
-        <p class="lead">Spor salonu performansına ve yönetim araçlarına genel bakış.</p>
+<div class="container py-4">
+
+    <div class="welcome-banner">
+        <h1>Yönetici Kontrol Paneli ⚡</h1>
+        <p>Sportify sistemindeki tüm operasyonları tek bir noktadan yönetin. Salonlar, eğitmenler ve randevular parmaklarınızın ucunda.</p>
     </div>
 
-    <div class="row">
-
-        <div class="col-md-3 mb-4">
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
             <div class="dashboard-card theme-blue">
-                <div class="card-header-custom">
-                    <i class="fas fa-building mb-2" style="font-size: 1.5rem;"></i><br>
-                    Spor Salonları
+                <div>
+                    <div class="icon-box">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="card-title">Spor Salonları</h3>
+                    <p class="card-text">Sistemdeki tüm şubeleri görüntüleyin, yeni salon ekleyin veya mevcut detayları güncelleyin.</p>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">Sistemdeki tüm şubeleri ve salon detaylarını yönetin.</p>
-                    <a asp-controller="Gym" asp-action="ListGym" class="btn-dashboard">
-                        Yönet
-                    </a>
-                </div>
+                <a asp-controller="Gym" asp-action="ListGym" class="btn-action">
+                    Salonları Yönet <i class="fas fa-arrow-right ms-2" style="font-size: 0.8em;"></i>
+                </a>
             </div>
         </div>
 
-        <div class="col-md-3 mb-4">
+        <div class="col-md-6 col-lg-3">
             <div class="dashboard-card theme-green">
-                <div class="card-header-custom">
-                    <i class="fas fa-user-ninja mb-2" style="font-size: 1.5rem;"></i><br>
-                    Antrenörler
+                <div>
+                    <div class="icon-box">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <h3 class="card-title">Antrenörler</h3>
+                    <p class="card-text">Eğitmen kadrosunu yönetin, uzmanlık alanlarını belirleyin ve performanslarını izleyin.</p>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">Eğitmen kadrosunu ve uzmanlık alanlarını düzenleyin.</p>
-                    <a asp-controller="Trainer" asp-action="ListTrainer" class="btn-dashboard">
-                        Yönet
-                    </a>
-                </div>
+                <a asp-controller="Trainer" asp-action="ListTrainer" class="btn-action">
+                    Eğitmenleri Yönet <i class="fas fa-arrow-right ms-2" style="font-size: 0.8em;"></i>
+                </a>
             </div>
         </div>
 
-        <div class="col-md-3 mb-4">
+        <div class="col-md-6 col-lg-3">
             <div class="dashboard-card theme-purple">
-                <div class="card-header-custom">
-                    <i class="fas fa-dumbbell mb-2" style="font-size: 1.5rem;"></i><br>
-                    Hizmetler
+                <div>
+                    <div class="icon-box">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3 class="card-title">Hizmetler</h3>
+                    <p class="card-text">Ders paketlerini, üyelik tiplerini, fiyatları ve servis sürelerini yapılandırın.</p>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">Ders paketlerini, fiyatları ve süreleri güncelleyin.</p>
-                    <a asp-controller="Service" asp-action="ListService" class="btn-dashboard">
-                        Yönet
-                    </a>
-                </div>
+                <a asp-controller="Service" asp-action="ListService" class="btn-action">
+                    Servisleri Yönet <i class="fas fa-arrow-right ms-2" style="font-size: 0.8em;"></i>
+                </a>
             </div>
         </div>
 
-        <div class="col-md-3 mb-4">
+        <div class="col-md-6 col-lg-3">
             <div class="dashboard-card theme-orange">
-                <div class="card-header-custom">
-                    <i class="fas fa-calendar-check mb-2" style="font-size: 1.5rem;"></i><br>
-                    Randevular
+                <div>
+                    <div class="icon-box">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="card-title">Randevular</h3>
+                    <p class="card-text">Üye rezervasyonlarını takip edin, onaylayın, iptal edin veya geçmiş kayıtları inceleyin.</p>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">Üye rezervasyonlarını onaylayın veya iptal edin.</p>
-                    <a asp-controller="Appointment" asp-action="ListAppointment" class="btn-dashboard">
-                        Yönet
-                    </a>
-                </div>
+                <a asp-controller="Appointment" asp-action="ListAppointment" class="btn-action">
+                    Takvime Git <i class="fas fa-arrow-right ms-2" style="font-size: 0.8em;"></i>
+                </a>
             </div>
         </div>
 

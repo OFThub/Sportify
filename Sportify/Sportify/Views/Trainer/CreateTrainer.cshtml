@@ -1,35 +1,121 @@
 ﻿@model Sportify.Models.Trainer
 
-<h2>Eğitmen Oluştur</h2>
+@{
+    ViewData["Title"] = "Eğitmen Oluştur";
+}
 
-<form asp-action="CreateTrainer" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<style>
+    .form-container {
+        background: white;
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        max-width: 600px;
+        margin: 2rem auto;
+    }
 
-    <input asp-for="TrainerName" type="hidden" class="form-control" readonly />
+    .form-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
 
+        .form-header h2 {
+            color: #1f2937;
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
 
-    <div class="form-group">
-        <label asp-for="WorkStartTime"></label>
-        <input asp-for="WorkStartTime" type="time" class="form-control" />
-        <span asp-validation-for="WorkStartTime" class="text-danger"></span>
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+        .form-group label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+    .form-control {
+        border: 2px solid #f3f4f6;
+        background-color: #f9fafb;
+        border-radius: 12px;
+        padding: 12px 15px;
+        transition: all 0.3s;
+        width: 100%;
+        box-shadow: none;
+    }
+
+        .form-control:focus {
+            background-color: #fff;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            outline: none;
+        }
+
+    .btn-create {
+        background-color: #10b981;
+        color: white;
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 1rem;
+    }
+
+        .btn-create:hover {
+            background-color: #059669;
+        }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="form-container">
+            <div class="form-header">
+                <h2><i class="fas fa-user-plus" style="color: #10b981; margin-right: 10px;"></i> Eğitmen Oluştur</h2>
+                <p class="text-muted">Yeni bir eğitmen profili oluşturun.</p>
+            </div>
+
+            <form asp-action="CreateTrainer" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <input asp-for="TrainerName" type="hidden" class="form-control" readonly />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Başlangıç Saati</label>
+                            <input asp-for="WorkStartTime" type="time" class="form-control" />
+                            <span asp-validation-for="WorkStartTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Bitiş Saati</label>
+                            <input asp-for="WorkEndTime" type="time" class="form-control" />
+                            <span asp-validation-for="WorkEndTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Spor Salonu</label>
+                    <select asp-for="GymId" asp-items="@(ViewBag.Salonlar)" class="form-control" style="cursor:pointer;">
+                        <option value="">-- Lütfen Spor Salonu Seçin --</option>
+                    </select>
+                    <span asp-validation-for="GymId" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-create">Eğitmen Oluştur</button>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="WorkEndTime"></label>
-        <input asp-for="WorkEndTime" type="time" class="form-control" />
-        <span asp-validation-for="WorkEndTime" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="GymId"></label>
-        <select asp-for="GymId" asp-items="@(ViewBag.Salonlar)" class="form-control">
-            <option value="">-- Lütfen Spor Salonu Seçin --</option>
-        </select>
-        <span asp-validation-for="GymId" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Eğitmen Oluştur</button>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

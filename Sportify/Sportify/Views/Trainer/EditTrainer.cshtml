@@ -4,55 +4,121 @@
     ViewData["Title"] = "Eğitmen Düzenle";
 }
 
-<h2>Eğitmen Düzenle</h2>
+<style>
+    .form-container {
+        background: white;
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        max-width: 600px;
+        margin: 2rem auto;
+    }
 
-<hr />
+    .form-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+        .form-header h2 {
+            color: #1f2937;
+            font-weight: 800;
+        }
+
+    .form-control[readonly] {
+        background-color: #e5e7eb;
+        color: #6b7280;
+        cursor: not-allowed;
+    }
+
+    .btn-save {
+        background-color: #3b82f6; /* Mavi - Düzenleme rengi */
+        color: white;
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: none;
+        font-size: 1rem;
+        margin-top: 1rem;
+        transition: 0.2s;
+    }
+
+        .btn-save:hover {
+            background-color: #2563eb;
+        }
+
+    .btn-back {
+        display: block;
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #6b7280;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .btn-back:hover {
+            color: #1f2937;
+        }
+</style>
 
 <div class="row">
-    <div class="col-md-6">
-        <form asp-action="EditTrainer">
-            
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <input type="hidden" asp-for="TrainerId" />
-            <input type="hidden" asp-for="service" />
-            <input type="hidden" asp-for="gym" />
-
-            <div class="form-group">
-                <label asp-for="TrainerName"></label>
-                <input asp-for="TrainerName" class="form-control" readonly />
-                <span asp-validation-for="TrainerName" class="text-danger"></span>
+    <div class="col-12">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Profili Düzenle</h2>
+                <p class="text-muted">Eğitmen bilgilerini güncelliyorsunuz.</p>
             </div>
 
-            <div class="form-group">
-                <label asp-for="WorkStartTime"></label>
-                <input asp-for="WorkStartTime" type="time" class="form-control" />
-                <span asp-validation-for="WorkStartTime" class="text-danger"></span>
-            </div>
+            <form asp-action="EditTrainer">
 
-            <div class="form-group">
-                <label asp-for="WorkEndTime"></label>
-                <input asp-for="WorkEndTime" type="time" class="form-control" />
-                <span asp-validation-for="WorkEndTime" class="text-danger"></span>
-            </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
+                <input type="hidden" asp-for="TrainerId" />
+                <input type="hidden" asp-for="service" />
+                <input type="hidden" asp-for="gym" />
 
-            <div class="form-group">
-                <label asp-for="GymId"></label>
-                <select asp-for="GymId" asp-items="ViewBag.Salonlar" class="form-control">
-                    <option value="">-- Lütfen Spor Salonu Seçin --</option>
-                </select>
-                <span asp-validation-for="GymId" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="TrainerName" class="form-label fw-bold text-secondary">Eğitmen Adı</label>
+                    <input asp-for="TrainerName" class="form-control" readonly />
+                    <span asp-validation-for="TrainerName" class="text-danger"></span>
+                </div>
 
-            <div class="form-group mt-3">
-                <button type="submit">Kaydet</button>
-                <a asp-action="Index">Listeye Geri Dön</a>
-            </div>
-        </form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="WorkStartTime" class="form-label fw-bold text-secondary">Başlangıç</label>
+                            <input asp-for="WorkStartTime" type="time" class="form-control" />
+                            <span asp-validation-for="WorkStartTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="WorkEndTime" class="form-label fw-bold text-secondary">Bitiş</label>
+                            <input asp-for="WorkEndTime" type="time" class="form-control" />
+                            <span asp-validation-for="WorkEndTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="GymId" class="form-label fw-bold text-secondary">Çalıştığı Salon</label>
+                    <select asp-for="GymId" asp-items="ViewBag.Salonlar" class="form-control">
+                        <option value="">-- Lütfen Spor Salonu Seçin --</option>
+                    </select>
+                    <span asp-validation-for="GymId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-save">Değişiklikleri Kaydet</button>
+                    <a asp-action="Index" class="btn-back">Listeye Geri Dön</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
