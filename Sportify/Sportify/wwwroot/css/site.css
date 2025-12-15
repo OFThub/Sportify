@@ -7,10 +7,19 @@
     --card-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
+html {
+    position: relative;
+    min-height: 100%; /* Minimum yüksekliği pencere yüksekliği kadar ayarla */
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--light-bg);
     color: #333;
+    margin-bottom: 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Navbar */
