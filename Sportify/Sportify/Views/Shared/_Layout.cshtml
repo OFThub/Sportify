@@ -4,75 +4,265 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Sportify</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Sportify.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/5.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        :root {
+            --sportify-green: #10b981;
+            --sportify-dark: #111827;
+            --sportify-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- MODERN NAVBAR TASARIMI --- */
+        .navbar-sportify {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); /* Buzlu cam etkisi */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Logo Stili */
+        .brand-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: var(--sportify-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-icon-box {
+            background: var(--sportify-gradient);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Link Animasyonları */
+        .nav-item .nav-link {
+            color: #4b5563 !important;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0 8px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+            .nav-item .nav-link:hover {
+                color: var(--sportify-dark) !important;
+            }
+
+        /* Alt Çizgi Animasyonu */
+        .nav-main .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--sportify-green);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-main .nav-link:hover::after {
+            width: 80%; /* Hoverda çizgi uzar */
+        }
+
+        /* AI Coach Butonu (Özel) */
+        .btn-ai-coach {
+            background: var(--sportify-dark);
+            color: white !important;
+            border-radius: 50px;
+            padding: 8px 20px !important;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+
+            .btn-ai-coach:hover {
+                background: white;
+                color: var(--sportify-dark) !important;
+                border-color: var(--sportify-dark);
+                transform: translateY(-2px);
+            }
+
+        .ai-sparkle {
+            color: #fbbf24;
+        }
+
+        /* Login / Register Butonları */
+        .btn-login-nav {
+            color: var(--sportify-dark) !important;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .btn-register-nav {
+            background-color: var(--sportify-green);
+            color: white !important;
+            padding: 8px 24px !important;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+            transition: all 0.2s;
+        }
+
+            .btn-register-nav:hover {
+                background-color: #059669;
+                transform: translateY(-1px);
+                box-shadow: 0 6px 15px rgba(16, 185, 129, 0.35);
+            }
+
+        /* Admin Butonu */
+        .btn-admin-nav {
+            background-color: #ef4444;
+            color: white !important;
+            font-size: 0.8rem;
+            padding: 4px 12px !important;
+            border-radius: 6px;
+            margin-left: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        .footer-modern {
+            background-color: white;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Sportify</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        @if (User.IsInRole("User"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Gym" asp-action="CreateGym">Create Gym</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Trainer" asp-action="CreateTrainer">Be a Trainer</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Service" asp-action="CreateService">Create Service</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Appointment" asp-action="BookAppointment">Make an Appointment</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Profile" asp-action="Index">Profile</a>
-                            </li>
-                        }
+        <nav class="navbar navbar-expand-lg navbar-sportify sticky-top">
+            <div class="container">
+                <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
+                    <div class="brand-icon-box"><i class="fas fa-bolt"></i></div>
+                    Sportify
+                </a>
 
-                        @if (User.IsInRole("Admin"))
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="fas fa-bars text-dark fs-3"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center nav-main">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Trainer" asp-action="ListTrainer">Eğitmenler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Service" asp-action="ListService">Hizmetler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn-ai-coach ms-2" asp-controller="AI" asp-action="Index">
+                                <i class="fas fa-robot"></i> AI Coach <i class="fas fa-star ai-sparkle"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav align-items-center">
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Admin" asp-action="Index">Admin</a>
+                                <a class="nav-link btn-admin-nav" asp-controller="Admin" asp-action="Index">
+                                    <i class="fas fa-lock me-1"></i> Admin
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown ms-3">
+                                <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                    <img src="https://ui-avatars.com/api/?name=@User.Identity.Name&background=10b981&color=fff" class="rounded-circle me-1" width="32" height="32">
+                                    @User.Identity.Name
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2">
+                                    <li><a class="dropdown-item rounded-2" asp-controller="Profile" asp-action="Index"><i class="fas fa-user me-2 text-muted"></i> Profilim</a></li>
+                                    <li><a class="dropdown-item rounded-2" asp-controller="Account" asp-action="ChangePassword"><i class="fas fa-key me-2 text-muted"></i> Şifre Değiştir</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <button type="submit" class="dropdown-item text-danger rounded-2 fw-bold"><i class="fas fa-sign-out-alt me-2"></i> Çıkış Yap</button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         }
-                        <partial name="_LoginPartial" />
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn-login-nav" asp-controller="Account" asp-action="Login">Giriş</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-register-nav" asp-controller="Account" asp-action="Register">
+                                    Kayıt Ol <i class="fas fa-arrow-right ms-1 small"></i>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <main role="main" class="flex-grow-1">
+        <div class="container py-4">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer-modern">
         <div class="container">
-            &copy; 2025 - Sportify -
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <span class="fw-bold text-dark h5 mb-0">Sportify</span>
+                    <span class="text-muted small ms-2">© 2024 Tüm hakları saklıdır.</span>
+                </div>
+                <div>
+                    <a href="#" class="text-muted me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-muted me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

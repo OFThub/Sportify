@@ -1,0 +1,238 @@
+﻿@model Sportify.Models.AIPlanViewModel
+
+@{
+    ViewData["Title"] = "AI Kişisel Koç";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<style>
+    :root {
+        --primary-green: #10b981;
+        --dark-navy: #1f2937;
+        --light-bg: #f3f4f6;
+    }
+
+    body {
+        background-color: var(--light-bg);
+    }
+
+    .ai-header {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        padding: 3rem 1rem;
+        border-radius: 20px;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+    }
+
+    .input-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        height: fit-content;
+    }
+
+    .result-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        min-height: 400px;
+        position: relative;
+    }
+
+    .form-control, .form-select {
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+    .btn-generate {
+        background-color: var(--dark-navy);
+        color: white;
+        width: 100%;
+        padding: 15px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: none;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+        .btn-generate:hover {
+            background-color: black;
+            transform: translateY(-2px);
+        }
+
+    /* Markdown İçerik Stilleri */
+    #ai-result-content h1, #ai-result-content h2, #ai-result-content h3 {
+        color: var(--dark-navy);
+        font-weight: 800;
+        margin-top: 1.5rem;
+    }
+
+    #ai-result-content h2 {
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 10px;
+    }
+
+    #ai-result-content ul {
+        padding-left: 20px;
+        color: #4b5563;
+    }
+
+    #ai-result-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    #ai-result-content th {
+        background-color: var(--primary-green);
+        color: white;
+        padding: 12px;
+        text-align: left;
+    }
+
+    #ai-result-content td {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 12px;
+    }
+
+    /* Loading Animasyonu */
+    .loader-container {
+        display: none;
+        text-align: center;
+        padding: 3rem;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid var(--primary-green);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem auto;
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+</style>
+
+<div class="container py-4">
+
+    <div class="ai-header">
+        <h1><i class="fas fa-robot"></i> Sportify AI Coach</h1>
+        <p class="mb-0">Yapay zeka vücut analizini yapsın, sana özel programı çıkarsın.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="input-card">
+                <h4 class="mb-4 fw-bold text-dark">Fiziksel Bilgiler</h4>
+
+                <form asp-action="Index" method="post" onsubmit="showLoader()">
+                    <label class="fw-bold text-muted small">Cinsiyet</label>
+                    <select asp-for="Gender" class="form-select">
+                        <option value="Kadın">Kadın</option>
+                        <option value="Erkek">Erkek</option>
+                    </select>
+
+                    <label class="fw-bold text-muted small">Vücut Tipi</label>
+                    <select asp-for="BodyType" class="form-select">
+                        <option value="">Seçiniz...</option>
+                        <option value="Ektomorf (Zayıf, zor kilo alan)">Ektomorf (Zayıf)</option>
+                        <option value="Mezomorf (Atletik, kaslı)">Mezomorf (Atletik)</option>
+                        <option value="Endomorf (Yapılı, kolay kilo alan)">Endomorf (Geniş)</option>
+                    </select>
+
+                    <label class="fw-bold text-muted small">Boy (cm)</label>
+                    <input asp-for="Height" type="number" class="form-control" placeholder="Örn: 175" />
+
+                    <label class="fw-bold text-muted small">Kilo (kg)</label>
+                    <input asp-for="Weight" type="number" class="form-control" placeholder="Örn: 70" />
+
+                    <button type="submit" class="btn-generate">
+                        <i class="fas fa-magic"></i> Program Oluştur
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="result-card">
+
+                <div id="loader" class="loader-container">
+                    <div class="spinner"></div>
+                    <h5>Yapay Zeka Analiz Yapıyor...</h5>
+                    <p class="text-muted">Bu işlem birkaç saniye sürebilir.</p>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.AIResponse))
+                {
+                    <div id="result-area">
+                        <div class="d-flex align-items-center mb-4">
+                            <div style="width:40px; height:40px; background:#10b981; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; margin-right:15px;">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h3 class="m-0 fw-bold">Sana Özel Program Hazır!</h3>
+                        </div>
+
+                        <div id="ai-result-content"></div>
+
+                        <textarea id="raw-markdown" style="display:none;">@Model.AIResponse</textarea>
+                    </div>
+                }
+                else
+                {
+                    <div id="placeholder-area" class="text-center py-5 text-muted">
+                        <i class="fas fa-dumbbell fa-4x mb-3" style="opacity:0.2;"></i>
+                        <p>Bilgilerini gir ve "Program Oluştur" butonuna bas.<br>Sana özel antrenman ve beslenme planın burada görünecek.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Form gönderildiğinde yükleniyor animasyonunu göster
+    function showLoader() {
+        document.getElementById('loader').style.display = 'block';
+        if(document.getElementById('result-area')) document.getElementById('result-area').style.display = 'none';
+        if(document.getElementById('placeholder-area')) document.getElementById('placeholder-area').style.display = 'none';
+    }
+
+    // Sayfa yüklendiğinde Markdown'ı HTML'e çevir
+    document.addEventListener("DOMContentLoaded", function() {
+        var rawMarkdown = document.getElementById('raw-markdown');
+        if (rawMarkdown) {
+            var content = rawMarkdown.value;
+            // marked kütüphanesi ile çevir
+            document.getElementById('ai-result-content').innerHTML = marked.parse(content);
+        }
+    });
+</script>
