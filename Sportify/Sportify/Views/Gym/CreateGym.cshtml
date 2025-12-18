@@ -5,42 +5,50 @@
     ViewData["Title"] = "Salon Ekle";
 }
 
-<h2>Yeni Spor Salonu Ekle</h2>
-<hr />
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="bg-dark p-4 text-center">
+                    <h3 class="fw-bold text-white mb-0">Yeni Salon Ekle</h3>
+                </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="CreateGym" asp-controller="Gym" method="post">
+                <div class="card-body p-4 p-md-5">
+                    <form asp-action="CreateGym" asp-controller="Gym" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-4">
+                            <label asp-for="GymName" class="form-label fw-bold text-muted small">Salon Adı</label>
+                            <input asp-for="GymName" class="form-control form-control-lg bg-light border-0 rounded-3" placeholder="Örn: Sportify Maslak" />
+                            <span asp-validation-for="GymName" class="text-danger small"></span>
+                        </div>
 
-            <div class="form-group mb-3">
-                <label asp-for="GymName"></label>
-                <input asp-for="GymName" class="form-control" />
-                <span asp-validation-for="GymName" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group mb-4">
+                                    <label asp-for="OpenTime" class="form-label fw-bold text-muted small">Açılış Saati</label>
+                                    <input asp-for="OpenTime" type="time" class="form-control form-control-lg bg-light border-0 rounded-3" />
+                                    <span asp-validation-for="OpenTime" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group mb-4">
+                                    <label asp-for="CloseTime" class="form-label fw-bold text-muted small">Kapanış Saati</label>
+                                    <input asp-for="CloseTime" type="time" class="form-control form-control-lg bg-light border-0 rounded-3" />
+                                    <span asp-validation-for="CloseTime" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-success btn-lg rounded-pill fw-bold">
+                                Salonu Kaydet <i class="fas fa-save ms-2"></i>
+                            </button>
+                            <a asp-action="ListGym" class="btn btn-link text-muted text-decoration-none small">Vazgeç ve Listeye Dön</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="form-group mb-3">
-                <label asp-for="OpenTime"></label>
-                <input asp-for="OpenTime" type="time" class="form-control" />
-                <span asp-validation-for="OpenTime" class="text-danger"></span>
-            </div>
-
-            <div class="form-group mb-3">
-                <label asp-for="CloseTime"></label>
-                <input asp-for="CloseTime" type="time" class="form-control" />
-                <span asp-validation-for="CloseTime" class="text-danger"></span>
-            </div>
-
-            <div class="mt-4">
-                <button type="submit">Salon Ekle</button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

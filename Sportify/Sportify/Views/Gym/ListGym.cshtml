@@ -1,82 +1,181 @@
 ﻿@model List<Sportify.Models.Gym>
 
-@if (Model == null || !Model.Any())
-{
-    <div class="alert alert-info">Henüz oluşturulmuş bir Salon bulunmamaktadır.</div>
+@{
+    ViewData["Title"] = "Spor Salonları";
 }
-else
-{
-    <div class="gym-list-container">
-        @foreach (var gym in Model)
-        {
-            <div class="gym-card">
 
-                <h2>@gym.GymName</h2>
-                <p><strong>Çalışma Saatleri:</strong> @gym.OpenTime - @gym.CloseTime</p>
-                <p><strong>Salon Sahibi:</strong> @gym.Name</p>
-                <p><strong>Salon Eğitmenleri:</strong> </p>
-                @if (gym.Trainers != null && gym.Trainers.Any())
-                {
-                    @foreach (var trainer in gym.Trainers)
-                    {
-                        <span>@trainer.TrainerName</span>
-                        <span>@trainer.WorkStartTime - @trainer.WorkEndTime</span>
-                        <br />
-                        @if (trainer.service != null && trainer.service.Any())
+<style>
+    .gym-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .gym-card {
+        background: white;
+        border-radius: 24px;
+        padding: 25px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        border: 1px solid #f1f5f9;
+        transition: all 0.3s ease;
+    }
+
+        .gym-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+        }
+
+    .gym-header h2 {
+        color: #111827;
+        font-weight: 800;
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .owner-badge {
+        font-size: 0.8rem;
+        background: #f0fdf4;
+        color: #166534;
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-weight: 600;
+    }
+
+    .section-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #94a3b8;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .pill-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pill {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 5px 12px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        color: #475569;
+    }
+
+    .gym-actions {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px dashed #e2e8f0;
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-action {
+        flex: 1;
+        padding: 10px;
+        border-radius: 12px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: 0.2s;
+    }
+
+    .btn-edit {
+        background: #111827;
+        color: white;
+    }
+
+        .btn-edit:hover {
+            background: #10b981;
+            color: white;
+        }
+
+    .btn-delete {
+        background: #fff1f2;
+        color: #e11d48;
+    }
+
+        .btn-delete:hover {
+            background: #ffe4e6;
+        }
+</style>
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold text-dark">Spor Salonları</h1>
+            <p class="text-muted m-0">Sistemdeki aktif salonlar ve eğitmen kadroları.</p>
+        </div>
+        <a asp-controller="Gym" asp-action="CreateGym" class="btn btn-success px-4 py-2 rounded-pill fw-bold">
+            <i class="fas fa-plus me-2"></i> Yeni Salon Ekle
+        </a>
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="text-center py-5">
+            <div class="mb-3 text-muted opacity-25"><i class="fas fa-dumbbell fa-4x"></i></div>
+            <p class="lead text-muted">Henüz oluşturulmuş bir salon bulunmamaktadır.</p>
+        </div>
+    }
+    else
+    {
+        <div class="gym-grid">
+            @foreach (var gym in Model)
+            {
+                <div class="gym-card">
+                    <div class="gym-header">
+                        <span class="owner-badge"><i class="fas fa-user-tie me-1"></i> @gym.Name</span>
+                        <h2 class="mt-2">@gym.GymName</h2>
+                        <div class="text-muted small">
+                            <i class="far fa-clock me-1 text-success"></i> @gym.OpenTime - @gym.CloseTime
+                        </div>
+                    </div>
+
+                    <span class="section-title">Eğitmenler</span>
+                    <div class="pill-container">
+                        @if (gym.Trainers != null && gym.Trainers.Any())
                         {
-                            @foreach (var service in trainer.service)
+                            @foreach (var trainer in gym.Trainers)
                             {
-                                <ol>@service.ServiceName</ol>
-                                <span>@service.ServicePrice TL</span>
-                                <span>@service.ServiceTime dk</span>
-                                <br />
+                                <div class="pill"><i class="fas fa-user-ninja me-1"></i> @trainer.TrainerName</div>
                             }
                         }
                         else
                         {
-                            <span>Hizmet bulunmamaktadır.</span>
-                        }                    }
-                }
-                else
-                {
-                    <span>Eğitmen bulunmamaktadır.</span>
-                }
-                <p><strong>Salon Hizmetleri:</strong> </p>
-                @if (gym.Services != null && gym.Services.Any())
-                {
-                    @foreach (var service in gym.Services)
-                    {
-                        <span>@service.ServiceName</span>
-                        <span>@service.ServicePrice TL</span>
-                        <span>@service.ServiceTime dk</span>
-                        <br />
-                    }
-                }
-                else
-                {
-                    <span>Hizmet bulunmamaktadır.</span>
-                }
+                            <span class="text-muted small">Eğitmen bulunmuyor</span>
+                        }
+                    </div>
 
-                <hr />
+                    <span class="section-title">Hizmetler</span>
+                    <div class="pill-container">
+                        @if (gym.Services != null && gym.Services.Any())
+                        {
+                            @foreach (var service in gym.Services)
+                            {
+                                <div class="pill">@service.ServiceName <b class="text-success ms-1">@service.ServicePrice TL</b></div>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted small">Hizmet tanımlanmamış</span>
+                        }
+                    </div>
 
-                <div class="gym-actions">
-
-                    <a asp-controller="Gym"
-                       asp-action="EditGym"
-                       asp-route-id="@gym.GymId">
-                        Düzenle
-                    </a>
-
-                    <a asp-controller="Gym"
-                       asp-action="DeleteGym"
-                       asp-route-id="@gym.GymId">
-                        Sil
-                    </a>
-
+                    <div class="gym-actions">
+                        <a asp-controller="Gym" asp-action="EditGym" asp-route-id="@gym.GymId" class="btn-action btn-edit">Düzenle</a>
+                        <a asp-controller="Gym" asp-action="DeleteGym" asp-route-id="@gym.GymId" class="btn-action btn-delete">Sil</a>
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
-}
-
-
+            }
+        </div>
+    }
+</div>

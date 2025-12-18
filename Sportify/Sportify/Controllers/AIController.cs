@@ -3,14 +3,17 @@ using Sportify.Models;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Net.Http.Headers;
 
 namespace Sportify.Controllers
 {
     public class AIController : Controller
     {
-        // Google Gemini API Key'ini buraya yapıştır
-        private const string ApiKey = "AIzaSyDHH2btOrCOSJfTKkZFbmJJtfvI_tSFhMs";
-        private const string ApiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+        // 1. ADIM: https://console.groq.com adresinden aldığınız API Key'i buraya yapıştırın.
+        private const string ApiKey = "gsk_BURAYA_GROQ_API_KEYINIZI_YAZIN";
+
+        // Groq API URL'i (OpenAI standartlarını kullanır)
+        private const string ApiUrl = "https://api.groq.com/openai/v1/chat/completions";
 
         [HttpGet]
         public IActionResult Index()
@@ -21,91 +24,73 @@ namespace Sportify.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(AIPlanViewModel model)
         {
-            if (string.IsNullOrEmpty(model.BodyType) || model.Height == 0 || model.Weight == 0)
-            {
-                ModelState.AddModelError("", "Lütfen tüm alanları doldurun.");
-                return View(model);
-            }
+            if (model == null) model = new AIPlanViewModel();
 
             try
             {
-                // 1. Promptu (İstemi) Hazırla
-                string prompt = @$"Sen dünyanın en iyi spor ve beslenme koçusun.
-                                   Kullanıcı Bilgileri:
-                                   - Cinsiyet: {model.Gender}
-                                   - Vücut Tipi: {model.BodyType}
-                                   - Boy: {model.Height} cm
-                                   - Kilo: {model.Weight} kg
+                // Prompt (İstem)
+                string prompt = $@"Sen profesyonel bir spor koçusun. 
+                                   Kullanıcı Bilgileri -> Boy: {model.Height}, Kilo: {model.Weight}, Tip: {model.BodyType}. 
+                                   Bu kişiye özel, Türkçe, maddeler halinde detaylı bir antrenman ve beslenme programı hazırla.";
 
-                                   Bu kişi için aşağıdakileri içeren markdown formatında profesyonel bir rapor oluştur:
-                                   1. Vücut Kitle İndeksi (VKİ) analizi ve yorumu.
-                                   2. Vücut tipine özel haftalık antrenman programı (Tablo formatında olsun).
-                                   3. Vücut tipine ve hedefine uygun günlük örnek diyet listesi (Kalori hesaplı).
-                                   4. Motivasyon notu.
-                                   
-                                   Lütfen başlıkları belirgin yap ve emojiler kullan.";
-
-                // 2. HTTP İsteği Gönder
                 using (var client = new HttpClient())
                 {
+                    // Groq Authorization Header eklenmeli
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ApiKey);
+
+                    // Groq / OpenAI İstek Formatı
                     var requestBody = new
                     {
-                        contents = new[]
+                        model = "llama-3.3-70b-versatile", // Veya "llama3-8b-8192" (daha hızlı)
+                        messages = new[]
                         {
-                            new { parts = new[] { new { text = prompt } } }
-                        }
+                            new { role = "system", content = "Sen yardımsever ve uzman bir antrenörsün." },
+                            new { role = "user", content = prompt }
+                        },
+                        temperature = 0.7
                     };
 
-                    var jsonContent = new StringContent(
-                        JsonSerializer.Serialize(requestBody),
-                        Encoding.UTF8,
-                        "application/json"
-                    );
+                    var jsonContent = new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json");
 
-                    var response = await client.PostAsync($"{ApiUrl}?key={ApiKey}", jsonContent);
+                    var response = await client.PostAsync(ApiUrl, jsonContent);
+                    var responseString = await response.Content.ReadAsStringAsync();
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var responseString = await response.Content.ReadAsStringAsync();
-                        var result = JsonSerializer.Deserialize<GeminiResponse>(responseString);
+                        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                        var result = JsonSerializer.Deserialize<GroqResponse>(responseString, options);
 
-                        // Cevabı modele ekle
-                        model.AIResponse = result?.Candidates?[0]?.Content?.Parts?[0]?.Text;
+                        // Cevabı alıyoruz
+                        model.AIResponse = result?.Choices?.FirstOrDefault()?.Message?.Content;
                     }
                     else
                     {
-                        model.AIResponse = "Üzgünüm, şu an yapay zeka servisine ulaşılamıyor. Lütfen API Key'inizi kontrol edin.";
+                        model.AIResponse = $"Hata: {response.StatusCode} - {responseString}";
                     }
                 }
             }
             catch (Exception ex)
             {
-                model.AIResponse = $"Bir hata oluştu: {ex.Message}";
+                model.AIResponse = $"Sistemsel Hata: {ex.Message}";
             }
 
             return View(model);
         }
 
-        // Google API Cevap Modelleri (Yardımcı Sınıflar)
-        public class GeminiResponse
+        // --- Groq / OpenAI Uyumlu Cevap Modelleri ---
+        public class GroqResponse
         {
-            [JsonPropertyName("candidates")]
-            public List<Candidate> Candidates { get; set; }
+            public List<Choice> Choices { get; set; }
         }
-        public class Candidate
+
+        public class Choice
         {
-            [JsonPropertyName("content")]
-            public Content Content { get; set; }
+            public Message Message { get; set; }
         }
-        public class Content
+
+        public class Message
         {
-            [JsonPropertyName("parts")]
-            public List<Part> Parts { get; set; }
-        }
-        public class Part
-        {
-            [JsonPropertyName("text")]
-            public string Text { get; set; }
+            public string Content { get; set; }
         }
     }
 }

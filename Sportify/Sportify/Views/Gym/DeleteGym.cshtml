@@ -4,16 +4,36 @@
     ViewData["Title"] = "Salon Sil";
 }
 
-<h3>Bu salonu silmek istediğinize emin misiniz?</h3>
+<div class="container py-5">
+    <div class="row justify-content-center text-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="bg-white p-5 rounded-5 shadow-lg">
+                <div class="mb-4 text-danger">
+                    <i class="fas fa-exclamation-circle fa-4x"></i>
+                </div>
+                <h2 class="fw-bold text-dark">Emin misiniz?</h2>
+                <p class="text-muted">
+                    <strong class="text-dark">@Model.GymName</strong> isimli spor salonunu silmek üzeresiniz. Bu işlem bu salona bağlı tüm eğitmen ve randevuları etkileyebilir.
+                </p>
 
-<div>
-    <h4>@Model.GymName</h4>
-    <p>Açılış: @Model.OpenTime</p>
-    <p>Kapanış: @Model.CloseTime</p>
+                <div class="bg-light p-3 rounded-4 my-4 text-start">
+                    <div class="small text-muted fw-bold text-uppercase">Salon Detayları</div>
+                    <div class="fw-bold mt-1">@Model.GymName</div>
+                    <div class="small text-muted">Açılış: @Model.OpenTime - Kapanış: @Model.CloseTime</div>
+                </div>
+
+                <form asp-action="DeleteConfirmed" asp-route-id="@Model.GymId">
+                    <input type="hidden" asp-for="GymId" />
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger btn-lg rounded-pill fw-bold">
+                            Evet, Kalıcı Olarak Sil
+                        </button>
+                        <a asp-action="ListGym" class="btn btn-light btn-lg rounded-pill fw-bold">
+                            Vazgeç
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
-<form asp-action="DeleteConfirmed" asp-route-id="@Model.GymId">
-    <input type="hidden" asp-for="GymId" />
-    <button type="submit" class="btn btn-danger">Sil</button>
-    <a asp-controller="Profile" asp-action="Index" class="btn btn-secondary">İptal</a>
-</form>

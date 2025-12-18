@@ -1,38 +1,89 @@
 ﻿@model List<Sportify.Models.Appointment>
 
-@if (Model == null || !Model.Any())
-{
-    <div class="alert alert-info">Henüz oluşturulmuş bir Randevu bulunmamaktadır.</div>
-}
-else
-{
-    <div class="appointment-list-container">
+<style>
+    .appointment-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 5px solid #10b981;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .appointment-details h4 {
+        margin: 0;
+        font-weight: 800;
+        color: #111827;
+    }
+
+    .appointment-meta {
+        font-size: 0.9rem;
+        color: #6b7280;
+        margin-top: 5px;
+    }
+
+    .tag {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        background: #ecfdf5;
+        color: #059669;
+        margin-right: 10px;
+    }
+
+    .btn-delete-appointment {
+        color: #ef4444;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.2s;
+    }
+
+        .btn-delete-appointment:hover {
+            background: #fef2f2;
+        }
+</style>
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold m-0"><i class="fas fa-calendar-check text-success me-2"></i> Randevu Yönetimi</h2>
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-calendar-times fa-4x text-muted opacity-25 mb-3"></i>
+            <p class="lead text-muted">Henüz oluşturulmuş bir randevu bulunmamaktadır.</p>
+        </div>
+    }
+    else
+    {
         @foreach (var appointment in Model)
         {
             <div class="appointment-card">
-
-                <h2>@appointment.UserName</h2>
-                <p><strong>Salon:</strong> @appointment.gym.GymName</p>
-                <p><strong>Eğitmen:</strong> @appointment.trainer.TrainerName</p>
-                <p><strong>Çalışma Saatleri:</strong> @appointment.trainer.WorkStartTime - @appointment.trainer.WorkEndTime</p>
-                <p><strong>Servis Adı:</strong> @appointment.service.ServiceName</p>
-                <p><strong>Servis Süresi:</strong> @appointment.service.ServiceTime dk</p>
-                <p><strong>Servis Ücreti:</strong> @appointment.service.ServicePrice TL</p>
-
-                <hr />
+                <div class="appointment-details">
+                    <span class="tag">@appointment.service.ServiceName</span>
+                    <h4>@appointment.UserName</h4>
+                    <div class="appointment-meta">
+                        <i class="fas fa-dumbbell me-1"></i> @appointment.gym.GymName |
+                        <i class="fas fa-user me-1"></i> @appointment.trainer.TrainerName |
+                        <i class="fas fa-clock me-1"></i> @appointment.service.ServiceTime dk
+                    </div>
+                </div>
 
                 <div class="appointment-actions">
-
-                    <a asp-controller="Appointment"
-                       asp-action="DeleteAppointment"
-                       asp-route-id="@appointment.AppointmentId">
-                        Sil
+                    <span class="fw-bold text-success me-4">@appointment.service.ServicePrice TL</span>
+                    <a asp-controller="Appointment" asp-action="DeleteAppointment" asp-route-id="@appointment.AppointmentId" class="btn-delete-appointment">
+                        <i class="fas fa-trash-alt me-1"></i> İptal Et
                     </a>
-
                 </div>
             </div>
         }
-    </div>
-}
-
-
+    }
+</div>

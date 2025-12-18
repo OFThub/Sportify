@@ -1,54 +1,45 @@
 ﻿@using Sportify.ViewModels
 @model AppointmentDetailViewModel
 
-@{
-    ViewData["Title"] = "Randevu Sil";
-}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="bg-danger p-4 text-center text-white">
+                    <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                    <h3 class="fw-bold">Randevu İptali</h3>
+                    <p class="mb-0">Bu randevuyu silmek istediğinizden emin misiniz?</p>
+                </div>
 
-<h2 class="text-danger">Silme İşlemi Onayı</h2>
+                <div class="card-body p-4">
+                    <div class="list-group list-group-flush mb-4">
+                        <div class="list-group-item d-flex justify-content-between">
+                            <span class="text-muted">Üye Adı:</span>
+                            <span class="fw-bold">@Model.UserName</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between">
+                            <span class="text-muted">Eğitmen:</span>
+                            <span class="fw-bold">@Model.TrainerName</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between">
+                            <span class="text-muted">Hizmet:</span>
+                            <span class="fw-bold">@Model.ServiceName</span>
+                        </div>
+                    </div>
 
-<h3>Bu Randevuyu silmek istediğinizden emin misiniz?</h3>
-<hr />
-
-<div>
-    <h4>Randevu Detayları</h4>
-    <dl class="row">
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.TrainerName)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.TrainerName)
-        </dd>
-
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.ServiceName)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.ServiceName)
-        </dd>
-
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.ServiceTime)
-        </dt>
-        <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.ServiceTime)
-        </dd>
-
-    </dl>
-
-    <form asp-controller="Appointment" asp-action="DeleteConfirmed" method="post">
-
-        <input type="hidden" name="id" value="@Model.AppointmentId" />
-
-        <input type="hidden" asp-for="AppointmentId" />
-
-        <button type="submit">Silme İşlemini Onayla</button>
-        <a asp-action="ListAppointment">Listeye Geri Dön</a>
-    </form>
+                    <form asp-controller="Appointment" asp-action="DeleteConfirmed" method="post">
+                        <input type="hidden" name="id" value="@Model.AppointmentId" />
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg rounded-3 fw-bold">
+                                Evet, Randevuyu İptal Et
+                            </button>
+                            <a asp-action="ListAppointment" class="btn btn-light btn-lg rounded-3 text-muted">
+                                Vazgeç, Listeye Dön
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
