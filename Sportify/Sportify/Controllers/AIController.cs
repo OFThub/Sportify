@@ -1,47 +1,44 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Sportify.Models;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Net.Http.Headers;
 
 namespace Sportify.Controllers
 {
     public class AIController : Controller
     {
-        // 1. ADIM: https://console.groq.com adresinden aldığınız API Key'i buraya yapıştırın.
-        private const string ApiKey = "gsk_BURAYA_GROQ_API_KEYINIZI_YAZIN";
+        private const string ApiKey = "API_KEY";
 
-        // Groq API URL'i (OpenAI standartlarını kullanır)
         private const string ApiUrl = "https://api.groq.com/openai/v1/chat/completions";
 
         [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
             return View(new AIPlanViewModel());
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Index(AIPlanViewModel model)
         {
             if (model == null) model = new AIPlanViewModel();
 
             try
             {
-                // Prompt (İstem)
                 string prompt = $@"Sen profesyonel bir spor koçusun. 
                                    Kullanıcı Bilgileri -> Boy: {model.Height}, Kilo: {model.Weight}, Tip: {model.BodyType}. 
                                    Bu kişiye özel, Türkçe, maddeler halinde detaylı bir antrenman ve beslenme programı hazırla.";
 
                 using (var client = new HttpClient())
                 {
-                    // Groq Authorization Header eklenmeli
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ApiKey);
 
-                    // Groq / OpenAI İstek Formatı
                     var requestBody = new
                     {
-                        model = "llama-3.3-70b-versatile", // Veya "llama3-8b-8192" (daha hızlı)
+                        model = "llama-3.3-70b-versatile", 
                         messages = new[]
                         {
                             new { role = "system", content = "Sen yardımsever ve uzman bir antrenörsün." },
@@ -60,7 +57,6 @@ namespace Sportify.Controllers
                         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
                         var result = JsonSerializer.Deserialize<GroqResponse>(responseString, options);
 
-                        // Cevabı alıyoruz
                         model.AIResponse = result?.Choices?.FirstOrDefault()?.Message?.Content;
                     }
                     else
@@ -77,7 +73,6 @@ namespace Sportify.Controllers
             return View(model);
         }
 
-        // --- Groq / OpenAI Uyumlu Cevap Modelleri ---
         public class GroqResponse
         {
             public List<Choice> Choices { get; set; }

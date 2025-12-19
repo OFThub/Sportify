@@ -183,35 +183,61 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Trainer" asp-action="ListTrainer">Eğitmenler</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Service" asp-action="ListService">Hizmetler</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-ai-coach ms-2" asp-controller="AI" asp-action="Index">
-                                <i class="fas fa-robot"></i> AI Coach <i class="fas fa-star ai-sparkle"></i>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="navbar-nav align-items-center">
-                        @if (User.Identity.IsAuthenticated)
+                        @if(User.IsInRole("User"))
                         {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Gym" asp-action="CreateGym">Salonlar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Trainer" asp-action="CreateTrainer">Eğitmenler</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Service" asp-action="CreateService">Hizmetler</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Appointment" asp-action="BookAppointment">Randevular</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-ai-coach ms-2" asp-controller="AI" asp-action="Index">
+                                    <i class="fas fa-robot"></i> AI Koç <i class="fas fa-star ai-sparkle"></i>
+                                </a>
+                            </li>
+                        }
+                        else if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Gym" asp-action="ListGym">Salonlar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Trainer" asp-action="ListTrainer">Eğitmenler</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Service" asp-action="ListService">Hizmetler</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Appointment" asp-action="ListAppointment">Randevular</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link btn-admin-nav" asp-controller="Admin" asp-action="Index">
                                     <i class="fas fa-lock me-1"></i> Admin
                                 </a>
                             </li>
+                        }
+                    </ul>
 
+                    <ul class="navbar-nav align-items-center">
+                        @if (User.Identity.IsAuthenticated)
+                        {
                             <li class="nav-item dropdown ms-3">
                                 <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                                     <img src="https://ui-avatars.com/api/?name=@User.Identity.Name&background=10b981&color=fff" class="rounded-circle me-1" width="32" height="32">
                                     @User.Identity.Name
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 p-2">
-                                    <li><a class="dropdown-item rounded-2" asp-controller="Profile" asp-action="Index"><i class="fas fa-user me-2 text-muted"></i> Profilim</a></li>
+                                    @if(User.IsInRole("User"))
+                                    {
+                                        <li><a class="dropdown-item rounded-2" asp-controller="Profile" asp-action="Index"><i class="fas fa-user me-2 text-muted"></i> Profilim</a></li>
+                                    }
                                     <li><a class="dropdown-item rounded-2" asp-controller="Account" asp-action="ChangePassword"><i class="fas fa-key me-2 text-muted"></i> Şifre Değiştir</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
@@ -250,12 +276,7 @@
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <div class="mb-3 mb-md-0">
                     <span class="fw-bold text-dark h5 mb-0">Sportify</span>
-                    <span class="text-muted small ms-2">© 2024 Tüm hakları saklıdır.</span>
-                </div>
-                <div>
-                    <a href="#" class="text-muted me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-muted me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <span class="text-muted small ms-2">© 2025 Tüm hakları saklıdır.</span>
                 </div>
             </div>
         </div>

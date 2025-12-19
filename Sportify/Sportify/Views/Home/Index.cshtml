@@ -1,41 +1,22 @@
 ﻿@{
     
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Sportify";
 }
 
 <div class="hero-section text-center text-white mb-5" style="margin-top: -1.5rem;">
     <div class="container py-5">
-        <h1 class="display-3 fw-bold mb-3">Build Your Dream Body</h1>
-        <p class="lead mb-4 mx-auto" style="max-width: 600px;">Experience the future of fitness with AI-driven analytics, professional coaching, and state-of-the-art facilities.</p>
+        <h1 class="display-3 fw-bold mb-3">Hayalindeki Vücudu İnşa Et</h1>
+        <p class="lead mb-4 mx-auto" style="max-width: 600px;">Yapay zekâ destekli analizler, profesyonel koçluk ve son teknoloji tesislerle fitness’ın geleceğini deneyimleyin.</p>
         <div>
-            @{
-                var isAuthenticated = User.Identity.IsAuthenticated;
-            }
-
-            @if (isAuthenticated)
-            {
-                <a asp-controller="Home" asp-action="Privacy" class="btn btn-sportify btn-lg me-3">Try AI Coach</a>
-            }
-            else
-            {
-                <a asp-controller="Account" asp-action="Login" class="btn btn-sportify btn-lg me-3">Try AI Coach</a>
-            }
-
-            @if (isAuthenticated)
-            {
-                <a asp-controller="Appointment" asp-action="BookAppointment" class="btn btn-outline-light btn-lg rounded-pill">Book Trainer</a>
-            }
-            else
-            {
-                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-light btn-lg rounded-pill">Book Trainer</a>
-            }
+            <a asp-controller="AI" asp-action="Index" class="btn btn-sportify btn-lg me-3">AI Koçu Dene</a>
+            <a asp-controller="Appointment" asp-action="BookAppointment" class="btn btn-outline-light btn-lg rounded-pill">Hemen Randevu Al</a>
         </div>
     </div>
 </div>
 
 <div class="container mb-5">
     <div class="text-center mb-5">
-        <h3 class="fw-bold">World Class Services</h3>
+        <h3 class="fw-bold">Dünya Standartlarında Hizmetler</h3>
         <div style="width: 50px; height: 3px; background-color: #00c853; margin: 10px auto;"></div>
     </div>
 
@@ -44,28 +25,28 @@
             <div class="card-custom text-center h-100 p-4">
                 <div class="fs-1 mb-3">💪</div>
                 <h5 class="fw-bold">Premium Fitness</h5>
-                <p class="text-muted small">Full access to gym equipment & cardio.</p>
+                <p class="text-muted small">Tüm spor salonu ekipmanlarına ve kardiyo alanına tam erişim.</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card-custom text-center h-100 p-4">
                 <div class="fs-1 mb-3">🧘‍♀️</div>
-                <h5 class="fw-bold">Yoga Masterclass</h5>
-                <p class="text-muted small">Find your inner peace with expert yogis.</p>
+                <h5 class="fw-bold">Yoga Ustalık Dersi</h5>
+                <p class="text-muted small">Uzman yogiler eşliğinde iç huzurunuzu bulun.</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card-custom text-center h-100 p-4">
                 <div class="fs-1 mb-3">🔥</div>
-                <h5 class="fw-bold">CrossFit Intensity</h5>
-                <p class="text-muted small">High intensity interval training.</p>
+                <h5 class="fw-bold">CrossFit Yoğunluğu</h5>
+                <p class="text-muted small">Yüksek Yoğunluklu Aralıklı Antrenman.</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card-custom text-center h-100 p-4">
                 <div class="fs-1 mb-3">🤸</div>
-                <h5 class="fw-bold">Pilates Core</h5>
-                <p class="text-muted small">Strengthen your core stability.</p>
+                <h5 class="fw-bold">Pilates Karın–Merkez Kasları</h5>
+                <p class="text-muted small">Merkez bölge stabilitenizi güçlendirin.</p>
             </div>
         </div>
     </div>
@@ -73,12 +54,16 @@
 
 <div class="bg-dark text-white text-center py-5">
     <div class="container">
-        <h3 class="mb-3">Ready to transform your life?</h3>
-        <p class="mb-4">Join Sportify today and take one step closer to achieving your dreams.</p>
-        @if (!isAuthenticated)
+        <h3 class="mb-3">Hayatını Şekillendirmeye Hazır Mısın?</h3>
+        <p class="mb-4">Sportify'a Bugün Katıl ve Hayaline Bir Adım Daha Yaklaş.</p>
+        @if (!User.Identity.IsAuthenticated)
         {
-            <a asp-controller="Account" asp-action="Register" class="btn btn-light rounded-pill px-5 fw-bold text-success">Get Started Now</a>
+            <a asp-controller="Account" asp-action="Register" class="btn btn-light rounded-pill px-5 fw-bold text-success">Çalışmaya Hemen Başla</a>
         }
-        
+        <a asp-controller="Home"
+           asp-action="Privacy"
+           class="text-decoration-none px-4 py-2 rounded-pill border border-success text-success fw-semibold opacity-75 hover-opacity-100">
+            Gizlilik Politikası
+        </a>
     </div>
 </div>

@@ -60,8 +60,6 @@ public class AppointmentController : Controller
             return RedirectToAction("BookAppointment");
         }
 
-        
-
         var appointment = new Appointment
         {
             TrainerId = model.TrainerId,

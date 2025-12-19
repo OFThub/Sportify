@@ -182,32 +182,49 @@ namespace Sportify.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var trainer = await _context.Egitmenler
-                .Include(x => x.service)
-                .FirstOrDefaultAsync(x => x.TrainerId == id);
-
-            if (trainer == null)
-                return NotFound();
-
-            var relatedAppointments = await _context.Randevular
-                .Where(a => a.TrainerId == id) 
+            // 🔴 1️⃣ Trainer'a ait servis ID'lerini al
+            var serviceIds = await _context.Servisler
+                .Where(s => s.TrainerId == id)
+                .Select(s => s.ServiceId)
                 .ToListAsync();
 
-            if (relatedAppointments != null && relatedAppointments.Count > 0)
+            // 🔴 2️⃣ Bu servislere veya direkt trainer'a bağlı TÜM randevular
+            var randevular = await _context.Randevular
+                .Where(r =>
+                    (r.TrainerId == id) ||
+                    (r.ServiceId != null && serviceIds.Contains(r.ServiceId.Value))
+                )
+                .ToListAsync();
+
+            if (randevular.Any())
             {
-                _context.Randevular.RemoveRange(relatedAppointments);
+                _context.Randevular.RemoveRange(randevular);
+                await _context.SaveChangesAsync(); // ❗ KRİTİK
             }
 
-            if (trainer.service != null && trainer.service.Count > 0)
+            // 🔵 3️⃣ Trainer'a bağlı servisler
+            var servisler = await _context.Servisler
+                .Where(s => s.TrainerId == id)
+                .ToListAsync();
+
+            if (servisler.Any())
             {
-                _context.Servisler.RemoveRange(trainer.service);
+                _context.Servisler.RemoveRange(servisler);
+                await _context.SaveChangesAsync();
             }
 
-            _context.Egitmenler.Remove(trainer);
-            await _context.SaveChangesAsync();
+            // 🟢 4️⃣ Trainer
+            var trainer = await _context.Egitmenler.FindAsync(id);
+
+            if (trainer != null)
+            {
+                _context.Egitmenler.Remove(trainer);
+                await _context.SaveChangesAsync();
+            }
 
             return RedirectToAction("Index", "Home");
         }
+
 
         private async Task PopulateGymsSelectList()
         {

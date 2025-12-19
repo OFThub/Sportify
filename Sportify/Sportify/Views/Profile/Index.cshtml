@@ -247,4 +247,63 @@
     {
         <div class="empty-state">Kayıtlı spor salonu kaydınız bulunmamaktadır.</div>
     }
+
+    <div class="section-header">
+        <h3 class="fw-bold m-0">
+            <i class="fas fa-calendar-check me-2" style="color:#14b8a6;"></i>
+            Randevularım
+        </h3>
+        <a asp-controller="Appointment"
+           asp-action="BookAppointment"
+           class="btn btn-outline-success btn-sm rounded-pill px-3">
+            <i class="fas fa-plus me-1"></i> Yeni Randevu Oluştur
+        </a>
+    </div>
+
+    @if (Model.MyAppointments != null && Model.MyAppointments.Any())
+    {
+        <div class="scroll-container">
+            @foreach (var item in Model.MyAppointments)
+            {
+                <div class="profile-card card-accent-teal">
+                    <div class="card-body-custom bg-teal-soft">
+
+                        <div class="info-label text-teal">Randevu Saatleri</div>
+                        <div class="info-value">
+                            @item.trainer?.WorkStartTime - @item.trainer?.WorkEndTime
+                        </div>
+
+                        <div class="info-label text-teal">Randevu Yeri</div>
+                        <div class="info-value">#@item.gym?.GymName</div>
+
+                        <div class="info-label text-teal">Randevu Hizmeti</div>
+                        <div class="info-value">#@item.service?.ServiceName</div>
+
+                        <div class="info-label text-teal">Randevu Süresi</div>
+                        <div class="info-value">#@item.service?.ServiceTime dk</div>
+
+                        <div class="info-label text-teal">Randevu Ücreti</div>
+                        <div class="info-value">#@item.service?.ServicePrice ₺</div>
+                    </div>
+
+                    <div class="card-actions-custom">
+                        <a asp-controller="Appointment"
+                           asp-action="DeleteAppointment"
+                           asp-route-id="@item.AppointmentId"
+                           class="btn-delete-sm" >
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-state text-teal">
+            Kayıtlı randevunuz bulunmamaktadır.
+        </div>
+    }
+
+
 </div>

@@ -151,28 +151,57 @@ namespace Sportify.Controllers
         }
 
         [Authorize]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var gym = await _context.Salonlar
-                .Include(x => x.Trainers)
-                .Include(x => x.Services)
-                .FirstOrDefaultAsync(x => x.GymId == id);
+            var serviceIds = await _context.Servisler
+                .Where(s => s.GymId == id)
+                .Select(s => s.ServiceId)
+                .ToListAsync();
 
-            if (gym == null)
-                return NotFound();
+            var randevular = await _context.Randevular
+                .Where(r => r.ServiceId != null && serviceIds.Contains(r.ServiceId.Value))
+                .ToListAsync();
 
-            if (gym.Trainers != null && gym.Trainers.Count > 0)
-                _context.Egitmenler.RemoveRange(gym.Trainers);
+            if (randevular.Any())
+            {
+                _context.Randevular.RemoveRange(randevular);
+                await _context.SaveChangesAsync();
+            }
 
-            if (gym.Services != null && gym.Services.Count > 0)
-                _context.Servisler.RemoveRange(gym.Services);
+            var servisler = await _context.Servisler
+                .Where(s => s.GymId == id)
+                .ToListAsync();
 
-            _context.Salonlar.Remove(gym);
-            await _context.SaveChangesAsync();
+            if (servisler.Any())
+            {
+                _context.Servisler.RemoveRange(servisler);
+                await _context.SaveChangesAsync();
+            }
+
+            var egitmenler = await _context.Egitmenler
+                .Where(t => t.GymId == id)
+                .ToListAsync();
+
+            if (egitmenler.Any())
+            {
+                _context.Egitmenler.RemoveRange(egitmenler);
+                await _context.SaveChangesAsync();
+            }
+
+            var gym = await _context.Salonlar.FindAsync(id);
+
+            if (gym != null)
+            {
+                _context.Salonlar.Remove(gym);
+                await _context.SaveChangesAsync();
+            }
 
             return RedirectToAction("Index", "Home");
         }
+
+
 
 
         private bool GymExists(int id)
